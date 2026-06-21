@@ -585,26 +585,45 @@
         @media (max-width: 768px) {
             .app { padding: 1rem 1rem 3rem; overflow-y: auto; height: auto; }
             .layout-grid-3 {
-                grid-template-columns: minmax(0, 1fr);
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
             }
-            .sidebar {
+            .right-sidebar {
+                order: 1;
                 position: static;
                 max-height: none;
                 overflow-y: visible;
             }
             .main-content {
+                order: 2;
                 overflow: visible;
+            }
+            .sidebar {
+                order: 3;
+                position: static;
+                max-height: none;
+                overflow-y: visible;
+            }
+            .card {
+                padding: 1rem !important;
+                margin-bottom: 0.75rem !important;
             }
             .input-row { grid-template-columns: 1fr; }
             .config-grid { grid-template-columns: 1fr 1fr; }
-            .modules-grid { grid-template-columns: 1fr 1fr; }
+            .modules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .actions-bar { flex-direction: column; }
             .btn { justify-content: center; }
+            
+            /* Disable module hover tooltip on mobile touch screens */
+            .module-tooltip {
+                display: none !important;
+            }
         }
         @media (max-width: 480px) {
             .config-grid { grid-template-columns: 1fr; }
             .modules-grid { grid-template-columns: 1fr; }
-            .card { padding: 1.25rem; }
+            .card { padding: 0.85rem !important; }
         }
 
         /* ══════════════════════ CUSTOM TOOLTIP ══════════════════════ */
