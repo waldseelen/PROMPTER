@@ -22,6 +22,9 @@
     --shadow: none;
     --shadow-sm: none;
     --transition: 0.15s ease;
+    --warning-bg: rgba(239, 68, 68, 0.1);
+    --warning-border: rgba(239, 68, 68, 0.3);
+    --warning-text: #fca5a5;
 }
 
 :root[data-theme="light"] {
@@ -46,6 +49,9 @@
     --shadow: none;
     --shadow-sm: none;
     --transition: 0.15s ease;
+    --warning-bg: rgba(239, 68, 68, 0.05);
+    --warning-border: rgba(239, 68, 68, 0.25);
+    --warning-text: #b91c1c;
 }
 
         /* ══════════════════════ RESET & BASE ══════════════════════ */
@@ -85,28 +91,20 @@
             flex-shrink: 0;
         }
         .header-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 4px 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+            display: none;
         }
         .header h1 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.5rem, 2.8vw, 1.9rem);
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--text-primary);
             line-height: 1.2;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
         .header p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
+            font-size: 0.92rem;
+            margin-top: 0.4rem;
             font-weight: 400;
         }
 
@@ -115,7 +113,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             margin-bottom: 1rem;
             box-shadow: none;
             transition: border-color var(--transition);
@@ -232,16 +230,16 @@
             display: grid;
             grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         .preset-btn {
-            padding: 8px 12px;
+            padding: 6px 10px;
             background: var(--bg-deep);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             color: var(--text-secondary);
             font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all var(--transition);
@@ -268,7 +266,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
         }
         .modules-header .title-side {
             display: flex; align-items: center; gap: 12px;
@@ -286,7 +284,7 @@
             display: flex; gap: 8px;
         }
         .modules-actions button {
-            padding: 6px 12px;
+            padding: 5px 12px;
             background: transparent;
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
@@ -310,7 +308,7 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            padding: 12px;
+            padding: 15px 12px;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
@@ -343,10 +341,10 @@
             line-height: 1.3;
         }
         .module-desc {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             color: var(--text-secondary);
-            margin-top: 4px;
-            line-height: 1.4;
+            margin-top: 6px;
+            line-height: 1.3;
         }
         .module-toggle {
             flex-shrink: 0;
@@ -536,7 +534,7 @@
 
         .main-content {
             min-width: 0;
-            overflow-y: auto;
+            overflow: visible;
             padding-right: 4px;
         }
 
@@ -579,10 +577,13 @@
                 max-height: none;
                 overflow-y: visible;
             }
+            .main-content {
+                overflow: visible;
+            }
         }
 
         @media (max-width: 768px) {
-            .app { padding: 1rem 1rem 3rem; }
+            .app { padding: 1rem 1rem 3rem; overflow-y: auto; height: auto; }
             .layout-grid-3 {
                 grid-template-columns: minmax(0, 1fr);
             }
@@ -590,6 +591,9 @@
                 position: static;
                 max-height: none;
                 overflow-y: visible;
+            }
+            .main-content {
+                overflow: visible;
             }
             .input-row { grid-template-columns: 1fr; }
             .config-grid { grid-template-columns: 1fr 1fr; }
@@ -601,6 +605,83 @@
             .config-grid { grid-template-columns: 1fr; }
             .modules-grid { grid-template-columns: 1fr; }
             .card { padding: 1.25rem; }
+        }
+
+        /* ══════════════════════ CUSTOM TOOLTIP ══════════════════════ */
+        .module-tooltip {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            width: 280px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+        }
+        
+        .module-card:hover .module-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .tooltip-title {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .tooltip-explain {
+            font-size: 0.72rem;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        .tooltip-reqs {
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px dashed var(--border);
+            font-size: 0.68rem;
+            color: var(--border-active);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tooltip-reqs-icon {
+            font-size: 0.75rem;
+        }
+        
+        /* Small triangle arrow pointing down */
+        .module-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--border);
+        }
+        .module-tooltip::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-1px);
+            border: 6px solid transparent;
+            border-top-color: var(--bg-card);
+            z-index: 101;
         }
     
 

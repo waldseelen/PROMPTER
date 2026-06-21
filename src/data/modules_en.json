@@ -343,7 +343,7 @@
     "desc": "Disaster & failure modes",
     "explain": "Examines what happens when the system or structure completely fails and how to recover.",
     "requires": [
-      "zayiflik"
+      "kirilma"
     ],
     "prompt": "CRISIS AND FAILURE SCENARIOS\nHow does this system/structure fail in the worst-case scenario?\n- Critical breaking points\n- Disaster scenarios\n- Recovery and mitigation steps",
     "layer": "advanced"

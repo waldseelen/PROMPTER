@@ -5,7 +5,7 @@ import {
     Target, Waypoints, ArrowDown10, GitFork, Infinity, Settings, 
     Hammer, RotateCcw, History, Swords, SplitSquareHorizontal, 
     Link, Combine, Brain, Component, PlaySquare, FlaskConical, 
-    AlertTriangle, LightbulbOff, XOctagon, Zap, Maximize, 
+    AlertTriangle, LightbulbOff, Lightbulb, XOctagon, Zap, Maximize, 
     Shuffle, TextQuote, BadgeCheck, PieChart, BookMarked, 
     CheckSquare, MoveRight, Telescope, Box, Flame, GraduationCap 
 } from 'lucide-react';
@@ -53,7 +53,7 @@ export default function ModuleGrid() {
 
     return (
         <section className="card delay-4">
-            <div className="modules-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.25rem' }}>
+            <div className="modules-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                 <div className="title-side">
                     <div className="card-title" style={{ marginBottom: 0 }}>
                         <span className="dot"></span> {t.modulesTitle}
@@ -66,7 +66,9 @@ export default function ModuleGrid() {
                     {(dependencyHints.length > 0 || suggestions.length > 0) && (
                         <div style={{ marginTop: '8px', fontSize: '0.75rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                             {dependencyHints.map((hint, idx) => (
-                                <span key={`hint-${idx}`} style={{ color: 'var(--accent-1)' }}>💡 {hint}</span>
+                                <span key={`hint-${idx}`} style={{ color: 'var(--accent-1)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                    <Lightbulb size={12} /> {hint}
+                                </span>
                             ))}
                             {suggestions.map((sug, idx) => {
                                 const modName = modules.find(m => m.id === sug)?.name;
@@ -108,8 +110,7 @@ export default function ModuleGrid() {
                             key={mod.id} 
                             className={`module-card ${isActive ? 'active' : ''}`}
                             onClick={() => toggleModule(mod.id)}
-                            style={isSuggested && !isActive ? { border: '1px dashed var(--accent-2)' } : {}}
-                            title={mod.explain + (mod.requires.length ? `\n\n${t.reqsLabel}: ` + mod.requires.join(', ') : '')}
+                            style={{ position: 'relative', ...(isSuggested && !isActive ? { border: '1px dashed var(--accent-2)' } : {}) }}
                         >
                             <div className="module-icon"><Icon size={20} strokeWidth={1.5} /></div>
                             <div className="module-info">
@@ -118,6 +119,20 @@ export default function ModuleGrid() {
                                     {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--text-secondary)', color: 'var(--bg-card)', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
                                 </div>
                                 <div className="module-desc">{mod.desc}</div>
+                            </div>
+
+                            {/* Custom Theme-Aware Tooltip */}
+                            <div className="module-tooltip">
+                                <div className="tooltip-title">{mod.name}</div>
+                                <div className="tooltip-explain">{mod.explain}</div>
+                                {mod.requires && mod.requires.length > 0 && (
+                                    <div className="tooltip-reqs">
+                                        <span className="tooltip-reqs-icon">🔗</span> {t.reqsLabel}: {mod.requires.map(reqId => {
+                                            const reqName = modules.find(m => m.id === reqId)?.name || reqId;
+                                            return `"${reqName}"`;
+                                        }).join(', ')}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     );

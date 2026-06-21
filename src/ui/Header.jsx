@@ -20,11 +20,15 @@ export default function Header() {
     };
 
     return (
-        <header className="header" style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', right: 0, top: 0, display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <header className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
+            <div>
+                <h1>{t.title}</h1>
+                <p>{t.subtitle}</p>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
                 <button 
                     onClick={toggleLang}
-                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', padding: '2px 6px', color: 'var(--text-secondary)', fontWeight: 600, transition: 'all 0.2s' }}
+                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', padding: '2px 8px', color: 'var(--text-secondary)', fontWeight: 600, transition: 'all 0.2s', height: '28px', display: 'flex', alignItems: 'center' }}
                     title={config.lang === 'en' ? 'Türkçe' : 'English'}
                     onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
                     onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
@@ -33,7 +37,7 @@ export default function Header() {
                 </button>
                 <button 
                     onClick={toggleTheme}
-                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s' }}
+                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', width: '28px', height: '28px' }}
                     title={`Theme: ${config.theme}`}
                     onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
                     onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
@@ -41,9 +45,6 @@ export default function Header() {
                     <ThemeIcon />
                 </button>
             </div>
-            <div className="header-badge">{t.badge}</div>
-            <h1>{t.title}</h1>
-            <p>{t.subtitle}</p>
         </header>
     );
 }

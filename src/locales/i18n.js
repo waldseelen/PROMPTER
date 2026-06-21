@@ -40,6 +40,7 @@ export const i18n = {
  monologLabel: 'İç Ses (Reasoning) Modu',
  autoResolveLabel: 'Otomatik Bağımlılık Çözme',
  presetsTitle: 'Hazır Şablonlar',
+ paramsTitle: 'Parametreler',
  presets: {
  hizli: 'Hızlı Özet',
  derin: 'Derin Analiz',
@@ -68,7 +69,7 @@ export const i18n = {
  toastUrlLimit: 'Prompt çok uzun! URL sınırına takılmamak için panoya kopyalayıp yönlendiriyoruz...',
  toastOpening: 'Yapay Zeka açılıyor...',
  toastReset: 'Tüm ayarlar sıfırlandı.',
- previewTitle: 'Prompt Önizleme (AST Formatı)',
+ previewTitle: 'Prompt Önizleme',
  previewChars: 'Karakter',
  previewTokens: 'Token',
  previewModules: 'modül',
@@ -128,6 +129,7 @@ export const i18n = {
  monologLabel: 'Internal Monologue (Reasoning)',
  autoResolveLabel: 'Auto-Resolve Dependencies',
  presetsTitle: 'Quick Presets',
+ paramsTitle: 'Parameters',
  presets: {
  hizli: 'Quick Summary',
  derin: 'Deep Analysis',
@@ -156,7 +158,7 @@ export const i18n = {
  toastUrlLimit: 'Prompt is too long! To avoid URL limits, we copied it to your clipboard...',
  toastOpening: 'Opening AI...',
  toastReset: 'All settings reset.',
- previewTitle: 'Prompt Preview (AST Format)',
+ previewTitle: 'Prompt Preview',
  previewChars: 'Chars',
  previewTokens: 'Tokens',
  previewModules: 'modules',

@@ -343,7 +343,7 @@
     "desc": "Hata veya felaket anları",
     "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
     "requires": [
-      "zayiflik"
+      "kirilma"
     ],
     "prompt": "KRİZ VE ÇÖKÜŞ SENARYOLARI\nBu yapı/sistem en kötü ihtimalle nasıl çöker veya başarısız olur?\n- Kritik kırılma noktaları\n- Felaket senaryoları\n- Kurtarma ve mitigation adımları",
     "layer": "advanced"

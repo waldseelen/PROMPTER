@@ -11,7 +11,7 @@ export default function ConfigPanel() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
             <section className="card" style={{ marginBottom: 0 }}>
-                <div className="card-title"><span className="dot"></span> Parametreler</div>
+                <div className="card-title"><span className="dot"></span> {t.paramsTitle || 'Parametreler'}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
                         <label htmlFor="sel-seviye" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
