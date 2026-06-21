@@ -7,10 +7,10 @@ export default function ConfigPanel() {
     const t = getTranslation(config.lang);
 
     return (
-        <>
-            <section className="card delay-1">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <section className="card delay-1" style={{ marginBottom: 0 }}>
                 <div className="card-title"><span className="dot"></span> {t.topicLabel || 'Hedef Tanımı'}</div>
-                <div className="input-row">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
                         <label htmlFor="inp-konu">{t.topicLabel} <span style={{color: 'var(--accent-1)'}}>*</span></label>
                         <input 
@@ -34,9 +34,9 @@ export default function ConfigPanel() {
                 </div>
             </section>
 
-            <section className="card delay-2">
+            <section className="card delay-2" style={{ marginBottom: 0 }}>
                 <div className="card-title"><span className="dot"></span> Parametreler</div>
-                <div className="config-grid">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
                         <label htmlFor="sel-seviye">{t.levelLabel}</label>
                         <select id="sel-seviye" value={config.seviye} onChange={(e) => setConfig('seviye', e.target.value)}>
@@ -77,7 +77,7 @@ export default function ConfigPanel() {
                     </div>
                 </div>
                 
-                <div className="config-grid" style={{ marginTop: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
                     <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
                         <label className="toggle-switch">
                             <input type="checkbox" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
@@ -98,6 +98,6 @@ export default function ConfigPanel() {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

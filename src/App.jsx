@@ -42,14 +42,16 @@ export default function App() {
     return (
         <div className="app">
             <Header />
-            <main className="container">
-                <div className="layout-grid">
+            <main className="container" style={{ maxWidth: '1600px' }}>
+                <div className="layout-grid-3">
                     <div className="sidebar">
                         <ConfigPanel />
                     </div>
                     <div className="main-content">
                         <PresetBar />
                         <ModuleGrid />
+                    </div>
+                    <div className="right-sidebar">
                         <ActionBar setGeneratedPrompt={setGeneratedPrompt} showToast={showToast} />
                         <PreviewPanel generatedPrompt={generatedPrompt} />
                     </div>

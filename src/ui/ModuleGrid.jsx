@@ -1,6 +1,47 @@
 import { useEngineState } from '../state/engineState';
 import { getModuleRegistry } from '../engine/moduleRegistry';
 import { getTranslation } from '../locales/i18n';
+import { 
+    Target, Waypoints, ArrowDown10, GitFork, Infinity, Settings, 
+    Hammer, RotateCcw, History, Swords, SplitSquareHorizontal, 
+    Link, Combine, Brain, Component, PlaySquare, FlaskConical, 
+    AlertTriangle, LightbulbOff, XOctagon, Zap, Maximize, 
+    Shuffle, TextQuote, BadgeCheck, PieChart, BookMarked, 
+    CheckSquare, MoveRight, Telescope, Box 
+} from 'lucide-react';
+
+const moduleIcons = {
+    kalibrasyon: Target,
+    onkosul: Waypoints,
+    sirasi: ArrowDown10,
+    ontoloji: GitFork,
+    nedensellik: Infinity,
+    mekanizma: Settings,
+    insa: Hammer,
+    tersine: RotateCcw,
+    evrim: History,
+    rakip: Swords,
+    kontrast: SplitSquareHorizontal,
+    esleme: Link,
+    disiplinler: Combine,
+    mental: Brain,
+    diagram: Component,
+    simulasyon: PlaySquare,
+    deney: FlaskConical,
+    yanilgilar: AlertTriangle,
+    varsayimlar: LightbulbOff,
+    basarisizlik: XOctagon,
+    kirilma: Zap,
+    olcek: Maximize,
+    celiski: Shuffle,
+    ornekler: TextQuote,
+    uzman: BadgeCheck,
+    pareto: PieChart,
+    kaynak: BookMarked,
+    quiz: CheckSquare,
+    transfer: MoveRight,
+    gelecek: Telescope
+};
 
 export default function ModuleGrid() {
     const state = useEngineState();
@@ -23,7 +64,7 @@ export default function ModuleGrid() {
                     {(dependencyHints.length > 0 || suggestions.length > 0) && (
                         <div style={{ marginTop: '8px', fontSize: '0.75rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                             {dependencyHints.map((hint, idx) => (
-                                <span key={`hint-${idx}`} style={{ color: 'var(--accent-1)' }}>⚡ {hint}</span>
+                                <span key={`hint-${idx}`} style={{ color: 'var(--accent-1)' }}>💡 {hint}</span>
                             ))}
                             {suggestions.map((sug, idx) => {
                                 const modName = modules.find(m => m.id === sug)?.name;
@@ -58,6 +99,7 @@ export default function ModuleGrid() {
                 {modules.map(mod => {
                     const isActive = selectedModules.includes(mod.id);
                     const isSuggested = suggestions.includes(mod.id);
+                    const Icon = moduleIcons[mod.id] || Box;
                     
                     return (
                         <div 
@@ -67,11 +109,11 @@ export default function ModuleGrid() {
                             style={isSuggested && !isActive ? { border: '1px dashed var(--accent-2)' } : {}}
                             title={mod.explain + (mod.requires.length ? `\n\n${t.reqsLabel}: ` + mod.requires.join(', ') : '')}
                         >
-                            <div className="module-icon">{mod.icon}</div>
+                            <div className="module-icon"><Icon size={20} strokeWidth={1.5} /></div>
                             <div className="module-info">
                                 <div className="module-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     {mod.name}
-                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--accent-2)', color: '#000', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
+                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--accent-2)', color: '#fff', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
                                 </div>
                                 <div className="module-desc">{mod.desc}</div>
                             </div>

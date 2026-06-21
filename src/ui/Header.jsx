@@ -1,5 +1,6 @@
 import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
+import { Sun, Moon, Monitor } from 'lucide-react';
 
 export default function Header() {
     const { config, setTheme, setConfig } = useEngineState();
@@ -15,15 +16,15 @@ export default function Header() {
         setConfig('lang', config.lang === 'en' ? 'tr' : 'en');
     };
 
-    const getThemeIcon = () => {
-        if (config.theme === 'light') return '☀️';
-        if (config.theme === 'dark') return '🌙';
-        return '💻';
+    const ThemeIcon = () => {
+        if (config.theme === 'light') return <Sun size={18} strokeWidth={1.5} />;
+        if (config.theme === 'dark') return <Moon size={18} strokeWidth={1.5} />;
+        return <Monitor size={18} strokeWidth={1.5} />;
     };
 
     return (
         <header className="header" style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', right: 0, top: 0, display: 'flex', gap: '8px' }}>
+            <div style={{ position: 'absolute', right: 0, top: 0, display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <button 
                     onClick={toggleLang}
                     style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', padding: '2px 6px', color: 'var(--text-secondary)', fontWeight: 600, transition: 'all 0.2s' }}
@@ -35,12 +36,12 @@ export default function Header() {
                 </button>
                 <button 
                     onClick={toggleTheme}
-                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.2rem', opacity: 0.8, transition: 'opacity 0.2s' }}
+                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s' }}
                     title={`Theme: ${config.theme}`}
-                    onMouseEnter={e => e.target.style.opacity = 1}
-                    onMouseLeave={e => e.target.style.opacity = 0.8}
+                    onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
+                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                 >
-                    {getThemeIcon()}
+                    <ThemeIcon />
                 </button>
             </div>
             <div className="header-badge">{t.badge}</div>
