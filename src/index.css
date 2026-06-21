@@ -604,11 +604,11 @@
                 overflow-y: visible;
             }
             .main-content {
-                order: 2;
+                order: 3;
                 overflow: visible;
             }
             .sidebar {
-                order: 3;
+                order: 2;
                 position: static;
                 max-height: none;
                 overflow-y: visible;
