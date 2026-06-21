@@ -7,7 +7,7 @@ import {
     Link, Combine, Brain, Component, PlaySquare, FlaskConical, 
     AlertTriangle, LightbulbOff, XOctagon, Zap, Maximize, 
     Shuffle, TextQuote, BadgeCheck, PieChart, BookMarked, 
-    CheckSquare, MoveRight, Telescope, Box 
+    CheckSquare, MoveRight, Telescope, Box, Flame, GraduationCap 
 } from 'lucide-react';
 
 const moduleIcons = {
@@ -40,7 +40,9 @@ const moduleIcons = {
     kaynak: BookMarked,
     quiz: CheckSquare,
     transfer: MoveRight,
-    gelecek: Telescope
+    gelecek: Telescope,
+    meta: GraduationCap,
+    senaryo: Flame
 };
 
 export default function ModuleGrid() {
@@ -113,11 +115,10 @@ export default function ModuleGrid() {
                             <div className="module-info">
                                 <div className="module-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     {mod.name}
-                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--accent-2)', color: '#fff', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
+                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--text-secondary)', color: 'var(--bg-card)', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
                                 </div>
                                 <div className="module-desc">{mod.desc}</div>
                             </div>
-                            <div className="module-toggle"></div>
                         </div>
                     );
                 })}

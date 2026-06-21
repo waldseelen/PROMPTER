@@ -3,6 +3,7 @@ import Header from './ui/Header';
 import ConfigPanel from './ui/ConfigPanel';
 import PresetBar from './ui/PresetBar';
 import ModuleGrid from './ui/ModuleGrid';
+import TopicInput from './ui/TopicInput';
 import ActionBar from './ui/ActionBar';
 import PreviewPanel from './ui/PreviewPanel';
 import Toast from './ui/Toast';
@@ -42,7 +43,7 @@ export default function App() {
     return (
         <div className="app">
             <Header />
-            <main className="container" style={{ maxWidth: '1600px' }}>
+            <main className="container">
                 <div className="layout-grid-3">
                     <div className="sidebar">
                         <ConfigPanel />
@@ -52,6 +53,7 @@ export default function App() {
                         <ModuleGrid />
                     </div>
                     <div className="right-sidebar">
+                        <TopicInput />
                         <ActionBar setGeneratedPrompt={setGeneratedPrompt} showToast={showToast} />
                         <PreviewPanel generatedPrompt={generatedPrompt} />
                     </div>
@@ -63,10 +65,6 @@ export default function App() {
                     <Toast key={toast.id} msg={toast.msg} type={toast.type} />
                 ))}
             </div>
-
-            <footer className="footer">
-                <p>{t.footer}</p>
-            </footer>
         </div>
     );
 }

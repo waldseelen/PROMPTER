@@ -327,5 +327,25 @@
     ],
     "prompt": "GELECEK PROJEKSİYONU\nBu konunun/teknolojinin gelecekteki evrimini projelendir.\n- 5 yıl sonra nasıl görünecek?\n- 20 yıl sonra nasıl görünecek?\n- Diğer sektörlerde hangi paradigma değişimlerini tetikleyecek?",
     "layer": "projection"
+  },
+  {
+    "id": "meta",
+    "name": "Meta-Öğrenme",
+    "desc": "Nasıl daha iyi öğrenilir?",
+    "explain": "Bu konuyu veya yeteneği kendi başınıza en verimli şekilde nasıl geliştireceğinizi ve çalışacağınızı listeler.",
+    "requires": [],
+    "prompt": "META-ÖĞRENME STRATEJİSİ\nBu konuyu en hızlı ve sağlam şekilde nasıl öğrenebilirim/ustalaşabilirim?\n- Önerilen çalışma metotları ve roadmap\n- Düşülen yaygın tuzaklar\n- Pratik için en iyi kaynak/araçlar",
+    "layer": "meta"
+  },
+  {
+    "id": "senaryo",
+    "name": "Kriz Senaryoları",
+    "desc": "Hata veya felaket anları",
+    "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
+    "requires": [
+      "zayiflik"
+    ],
+    "prompt": "KRİZ VE ÇÖKÜŞ SENARYOLARI\nBu yapı/sistem en kötü ihtimalle nasıl çöker veya başarısız olur?\n- Kritik kırılma noktaları\n- Felaket senaryoları\n- Kurtarma ve mitigation adımları",
+    "layer": "advanced"
   }
 ]

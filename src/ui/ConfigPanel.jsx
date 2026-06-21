@@ -1,6 +1,6 @@
 import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
-import { Target, Compass, GraduationCap, Workflow, Layers, FileText, BrainCircuit, Link } from 'lucide-react';
+import { GraduationCap, Workflow, Layers, FileText, BrainCircuit, Link } from 'lucide-react';
 
 export default function ConfigPanel() {
     const state = useEngineState();
@@ -9,35 +9,6 @@ export default function ConfigPanel() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <section className="card" style={{ marginBottom: 0 }}>
-                <div className="card-title"><span className="dot"></span> {t.topicLabel || 'Hedef Tanımı'}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    <div className="input-group">
-                        <label htmlFor="inp-konu" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-                            <Target size={14} /> {t.topicLabel} <span style={{color: 'var(--text-secondary)'}}>*</span>
-                        </label>
-                        <input 
-                            type="text" 
-                            id="inp-konu" 
-                            placeholder={t.topicPlaceholder}
-                            value={config.konu}
-                            onChange={(e) => setConfig('konu', e.target.value)}
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="inp-alan" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
-                            <Compass size={14} /> {t.domainLabel}
-                        </label>
-                        <input 
-                            type="text" 
-                            id="inp-alan" 
-                            placeholder={t.domainPlaceholder}
-                            value={config.alan}
-                            onChange={(e) => setConfig('alan', e.target.value)}
-                        />
-                    </div>
-                </div>
-            </section>
 
             <section className="card" style={{ marginBottom: 0 }}>
                 <div className="card-title"><span className="dot"></span> Parametreler</div>

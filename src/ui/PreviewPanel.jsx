@@ -10,7 +10,7 @@ export default function PreviewPanel({ generatedPrompt }) {
     const stats = analyzePromptComplexity(state);
 
     return (
-        <section className="card" id="preview-card" style={{ marginTop: '2rem' }}>
+        <section className="card" id="preview-card" style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, marginBottom: 0 }}>
             <div className="preview-header">
                 <div className="card-title" style={{ marginBottom: 0 }}>
                     <span className="dot" style={{ background: 'var(--accent-2)' }}></span> {t.previewTitle}

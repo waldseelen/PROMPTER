@@ -327,5 +327,25 @@
     ],
     "prompt": "FUTURE PROJECTION\nProject the evolution of this topic/technology into the future.\n- What will it look like in 5 years?\n- What will it look like in 20 years?\n- What paradigm shifts will it trigger in other industries?",
     "layer": "projection"
+  },
+  {
+    "id": "meta",
+    "name": "Meta-Learning",
+    "desc": "How to learn it best?",
+    "explain": "Lists the most efficient ways to study, practice, and master this specific topic or skill.",
+    "requires": [],
+    "prompt": "META-LEARNING STRATEGY\nHow can I master this topic fastest and most robustly?\n- Recommended study methods & roadmap\n- Common pitfalls to avoid\n- Best tools/resources for practice",
+    "layer": "meta"
+  },
+  {
+    "id": "senaryo",
+    "name": "Crisis Scenarios",
+    "desc": "Disaster & failure modes",
+    "explain": "Examines what happens when the system or structure completely fails and how to recover.",
+    "requires": [
+      "zayiflik"
+    ],
+    "prompt": "CRISIS AND FAILURE SCENARIOS\nHow does this system/structure fail in the worst-case scenario?\n- Critical breaking points\n- Disaster scenarios\n- Recovery and mitigation steps",
+    "layer": "advanced"
   }
 ]
