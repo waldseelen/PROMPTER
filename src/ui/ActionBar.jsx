@@ -1,35 +1,45 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { assembleFinalPrompt } from '../compiler/finalPromptAssembler';
 import { copyToClipboard, openInAI } from '../utils/aiRouter';
 import { SiGooglegemini, SiAnthropic, SiPerplexity, SiOpenaigym } from '@icons-pack/react-simple-icons';
 import { getTranslation } from '../locales/i18n';
 import { Sparkles, Copy, RotateCcw } from 'lucide-react';
 
-export default function ActionBar({ setGeneratedPrompt, showToast }) {
-    const state = useEngineState();
-    const { config, selectedModules, clearAll } = state;
-    const t = getTranslation(config.lang);
+export default function ActionBar({ showToast }) {
+    const { clearAll, setGeneratedPrompt } = useEngineState(useShallow(state => ({
+        clearAll: state.clearAll,
+        setGeneratedPrompt: state.setGeneratedPrompt
+    })));
+    
+    // We only need lang from config for translations
+    const lang = useEngineState(state => state.config.lang);
+    const t = getTranslation(lang);
 
     const handleGenerate = () => {
-        if (!config.konu.trim()) {
+        const currentState = useEngineState.getState();
+        if (!currentState.config.konu.trim()) {
             showToast(t.toastNeedTopic, 'warn');
             return;
         }
-        if (selectedModules.length === 0) {
+        if (currentState.selectedModules.length === 0) {
             showToast(t.toastNeedModule, 'warn');
             return;
         }
-        const prompt = assembleFinalPrompt(state);
+        const prompt = assembleFinalPrompt(currentState);
         setGeneratedPrompt(prompt);
         showToast(t.toastSuccess);
         setTimeout(() => {
             const previewCard = document.getElementById('preview-card');
+            const previewBox = document.getElementById('preview-box');
             if (previewCard) previewCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (previewBox) previewBox.focus();
         }, 100);
     };
 
     const handleCopy = () => {
-        const prompt = assembleFinalPrompt(state);
+        const currentState = useEngineState.getState();
+        const prompt = assembleFinalPrompt(currentState);
         if (!prompt) {
             showToast(t.toastNeedPrompt, 'warn');
             return;
@@ -41,7 +51,8 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
     };
 
     const handleOpenAI = (aiName) => {
-        const prompt = assembleFinalPrompt(state);
+        const currentState = useEngineState.getState();
+        const prompt = assembleFinalPrompt(currentState);
         if (!prompt) {
             showToast(t.toastNeedPrompt, 'warn');
             return;
@@ -79,7 +90,7 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
                 <button className="btn btn-secondary" style={{ background: '#d97757', color: '#fff', borderColor: '#d97757', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8rem', padding: '8px 4px' }} onClick={() => handleOpenAI('claude')}>
                     <SiAnthropic size={14} /> Claude
                 </button>
-                <button className="btn btn-secondary" style={{ background: '#22b8cd', color: '#fff', borderColor: '#22b8cd', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8rem', padding: '8px 4px' }} onClick={() => handleOpenAI('perplexity')}>
+                <button className="btn btn-secondary" style={{ background: '#22b8cd', color: '#1a1a1a', borderColor: '#22b8cd', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8rem', padding: '8px 4px', fontWeight: 600 }} onClick={() => handleOpenAI('perplexity')}>
                     <SiPerplexity size={14} /> Perplexity
                 </button>
             </div>

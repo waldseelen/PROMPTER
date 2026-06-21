@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import Header from './ui/Header';
 import ConfigPanel from './ui/ConfigPanel';
 import PresetBar from './ui/PresetBar';
@@ -8,24 +9,27 @@ import ActionBar from './ui/ActionBar';
 import PreviewPanel from './ui/PreviewPanel';
 import Toast from './ui/Toast';
 import OnboardingTour from './ui/OnboardingTour';
-import { useEngineState } from './state/engineState';
+import { ErrorBoundary } from './ui/ErrorBoundary';
+import { useEngineState } from './store/engineState';
 import { getTranslation } from './locales/i18n';
 import './index.css';
 
 export default function App() {
-    const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [toasts, setToasts] = useState([]);
-    const state = useEngineState();
-    const { config, startTour } = state;
+    const toastTimers = useRef(new Map());
+    
+    const { config, startTour } = useEngineState(useShallow(state => ({
+        config: state.config,
+        startTour: state.startTour
+    })));
     const t = getTranslation(config.lang);
 
     useEffect(() => {
         const isMobile = window.innerWidth < 768;
-        const tourCompleted = localStorage.getItem('prompter-tour-completed') === 'true';
-        if (!tourCompleted && !isMobile) {
+        if (!config.tourCompleted && !isMobile) {
             startTour();
         }
-    }, [startTour]);
+    }, [config.tourCompleted, startTour]);
 
     useEffect(() => {
         const root = document.documentElement;
@@ -41,33 +45,43 @@ export default function App() {
         }
     }, [config.theme]);
 
+    useEffect(() => {
+        return () => {
+            toastTimers.current.forEach(clearTimeout);
+        };
+    }, []);
+
     const showToast = (msg, type = 'success') => {
         const id = Date.now();
         setToasts(prev => [{ id, msg, type }, ...prev]);
-        setTimeout(() => {
+        const timerId = setTimeout(() => {
             setToasts(prev => prev.filter(t => t.id !== id));
+            toastTimers.current.delete(id);
         }, 3000);
+        toastTimers.current.set(id, timerId);
     };
 
     return (
         <div className="app">
             <Header />
-            <main className="container">
-                <div className="layout-grid-3">
-                    <div className="sidebar">
-                        <ConfigPanel />
+            <ErrorBoundary>
+                <main className="container">
+                    <div className="layout-grid-3">
+                        <div className="sidebar">
+                            <ConfigPanel />
+                        </div>
+                        <div className="main-content">
+                            <PresetBar />
+                            <ModuleGrid />
+                        </div>
+                        <div className="right-sidebar">
+                            <TopicInput />
+                            <ActionBar showToast={showToast} />
+                            <PreviewPanel />
+                        </div>
                     </div>
-                    <div className="main-content">
-                        <PresetBar />
-                        <ModuleGrid />
-                    </div>
-                    <div className="right-sidebar">
-                        <TopicInput />
-                        <ActionBar setGeneratedPrompt={setGeneratedPrompt} showToast={showToast} />
-                        <PreviewPanel generatedPrompt={generatedPrompt} />
-                    </div>
-                </div>
-            </main>
+                </main>
+            </ErrorBoundary>
             
             <div className="toast-container">
                 {toasts.map(toast => (

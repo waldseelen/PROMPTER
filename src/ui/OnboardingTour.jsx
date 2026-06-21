@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
 import { getTranslation } from '../locales/i18n';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -126,7 +126,7 @@ export default function OnboardingTour() {
         }
     }, [currentStep, showTour, steps]);
 
-    if (!showTour || isMobile || steps.length === 0) return null;
+    if (!showTour || steps.length === 0) return null;
 
     const step = steps[currentStep];
     const isFirst = currentStep === 0;
@@ -154,7 +154,7 @@ export default function OnboardingTour() {
 
     return (
         <>
-            <div className="tour-overlay" onClick={handleSkip} />
+            <div className="tour-overlay" />
             <div 
                 className="tour-card"
                 ref={cardRef}
@@ -176,6 +176,15 @@ export default function OnboardingTour() {
                                 key={idx} 
                                 className={`tour-dot ${idx === currentStep ? 'active' : ''}`}
                                 onClick={() => setCurrentStep(idx)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        setCurrentStep(idx);
+                                    }
+                                }}
+                                aria-label={`Step ${idx + 1}`}
                             />
                         ))}
                     </div>

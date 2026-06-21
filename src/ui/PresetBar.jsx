@@ -1,4 +1,5 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { getTranslation } from '../locales/i18n';
 import { PRESETS } from '../engine/presetEngine';
 import { Zap, FlaskConical, FileCheck, Wrench, Layers, BookOpen, Box, Terminal, Bug, Sparkles } from 'lucide-react';
@@ -17,7 +18,11 @@ const presetIcons = {
 };
 
 export default function PresetBar() {
-    const { config, setPreset, activePreset } = useEngineState();
+    const { config, setPreset, activePreset } = useEngineState(useShallow(state => ({
+        config: state.config,
+        setPreset: state.setPreset,
+        activePreset: state.activePreset
+    })));
     const t = getTranslation(config.lang);
 
     return (

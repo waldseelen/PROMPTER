@@ -8,7 +8,7 @@
     --border: #2c2d30;
     --border-active: #5e6ad2;
     --text-primary: #f2f2f2;
-    --text-secondary: #8a8f98;
+    --text-secondary: #a0a5ad;
     --text-muted: #5e6167;
     --accent-1: #5e6ad2;
     --accent-2: #e0e0e0;
@@ -622,11 +622,6 @@
             .modules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .actions-bar { flex-direction: column; }
             .btn { justify-content: center; }
-            
-            /* Disable module hover tooltip on mobile touch screens */
-            .module-tooltip {
-                display: none !important;
-            }
         }
         @media (max-width: 480px) {
             .config-grid { grid-template-columns: 1fr; }

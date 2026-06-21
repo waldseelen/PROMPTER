@@ -1,13 +1,24 @@
-const AI_URLS = {
-    chatgpt: 'https://chatgpt.com/?q=',
-    claude: 'https://claude.ai/new?q=',
-    perplexity: 'https://www.perplexity.ai/search?q=',
-    gemini: 'https://gemini.google.com/app?prompt='
+const AI_STRATEGIES = {
+    chatgpt: {
+        getBaseUrl: () => 'https://chatgpt.com/',
+        getPromptUrl: (prompt) => 'https://chatgpt.com/?q=' + encodeURIComponent(prompt)
+    },
+    claude: {
+        getBaseUrl: () => 'https://claude.ai/new',
+        getPromptUrl: (prompt) => 'https://claude.ai/new?q=' + encodeURIComponent(prompt)
+    },
+    perplexity: {
+        getBaseUrl: () => 'https://www.perplexity.ai/search',
+        getPromptUrl: (prompt) => 'https://www.perplexity.ai/search?q=' + encodeURIComponent(prompt)
+    },
+    gemini: {
+        getBaseUrl: () => 'https://gemini.google.com/app',
+        getPromptUrl: (prompt) => 'https://gemini.google.com/app?prompt=' + encodeURIComponent(prompt)
+    }
 };
 
 export function copyToClipboard(text, onSuccess, onError) {
     if (!navigator.clipboard) {
-        // fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
@@ -31,23 +42,20 @@ export function copyToClipboard(text, onSuccess, onError) {
 
 export function openInAI(aiName, prompt, onLengthWarning, onSuccessCopy) {
     if (!prompt) return;
+    const strategy = AI_STRATEGIES[aiName];
+    if (!strategy) return;
 
     const isTooLongForUrl = prompt.length > 4000;
     
     if (isTooLongForUrl) {
-        // Prompt is too long to safely put in a URL. 
-        // Best practice is to copy to clipboard and open the base URL.
         if (onLengthWarning) onLengthWarning();
-        
+        // Synchronous window.open to bypass popup blocker
+        window.open(strategy.getBaseUrl(), '_blank');
         copyToClipboard(prompt, () => {
             if(onSuccessCopy) onSuccessCopy();
-            // Fallback to base URL
-            const baseUrl = AI_URLS[aiName].split('?')[0];
-            window.open(baseUrl, '_blank');
         });
         return;
     }
 
-    const url = AI_URLS[aiName] + encodeURIComponent(prompt);
-    window.open(url, '_blank');
+    window.open(strategy.getPromptUrl(prompt), '_blank');
 }

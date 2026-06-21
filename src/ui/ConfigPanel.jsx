@@ -1,10 +1,13 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { getTranslation } from '../locales/i18n';
 import { GraduationCap, Workflow, Layers, FileText, BrainCircuit, Link } from 'lucide-react';
 
 export default function ConfigPanel() {
-    const state = useEngineState();
-    const { config, setConfig } = state;
+    const { config, setConfig } = useEngineState(useShallow(state => ({
+        config: state.config,
+        setConfig: state.setConfig
+    })));
     const t = getTranslation(config.lang);
 
     return (
@@ -64,19 +67,19 @@ export default function ConfigPanel() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
                     <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
                         <label className="toggle-switch">
-                            <input type="checkbox" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
+                            <input type="checkbox" id="chk-monolog" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
                             <span className="slider"></span>
                         </label>
-                        <label style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setConfig('monolog', !config.monolog)}>
+                        <label htmlFor="chk-monolog" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
                             <BrainCircuit size={14} /> {t.monologLabel}
                         </label>
                     </div>
                     <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
                         <label className="toggle-switch">
-                            <input type="checkbox" checked={config.autoResolveDeps} onChange={(e) => setConfig('autoResolveDeps', e.target.checked)} />
+                            <input type="checkbox" id="chk-autoresolve" checked={config.autoResolveDeps} onChange={(e) => setConfig('autoResolveDeps', e.target.checked)} />
                             <span className="slider"></span>
                         </label>
-                        <label style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setConfig('autoResolveDeps', !config.autoResolveDeps)}>
+                        <label htmlFor="chk-autoresolve" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
                             <Link size={14} /> {t.autoResolveLabel}
                         </label>
                     </div>

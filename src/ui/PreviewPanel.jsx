@@ -1,14 +1,22 @@
+import { useMemo } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { analyzePromptComplexity } from '../compiler/finalPromptAssembler';
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
 import { getTranslation } from '../locales/i18n';
 import { Component, Brain, Zap, Hash } from 'lucide-react';
 
-export default function PreviewPanel({ generatedPrompt }) {
-    const state = useEngineState();
-    const { config } = state;
+export default function PreviewPanel() {
+    const { config, selectedModules, generatedPrompt } = useEngineState(useShallow(state => ({
+        config: state.config,
+        selectedModules: state.selectedModules,
+        generatedPrompt: state.generatedPrompt
+    })));
+    
     const t = getTranslation(config.lang);
 
-    const stats = analyzePromptComplexity(state);
+    const stats = useMemo(() => {
+        return analyzePromptComplexity({ config, selectedModules });
+    }, [config, selectedModules]);
 
     return (
         <section className="card" id="preview-card" style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, marginBottom: 0 }}>
@@ -41,7 +49,7 @@ export default function PreviewPanel({ generatedPrompt }) {
             )}
 
             {generatedPrompt ? (
-                <div className="preview-box">
+                <div className="preview-box" id="preview-box" tabIndex={-1}>
                     {generatedPrompt}
                 </div>
             ) : (

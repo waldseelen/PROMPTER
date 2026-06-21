@@ -1,6 +1,9 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { getModuleRegistry } from '../engine/moduleRegistry';
+import { getSuggestions } from '../engine/intelligenceLayer';
 import { getTranslation } from '../locales/i18n';
+import { useMemo } from 'react';
 import { 
     Target, Waypoints, ArrowDown10, GitFork, Infinity, Settings, 
     Hammer, RotateCcw, History, Swords, SplitSquareHorizontal, 
@@ -46,14 +49,25 @@ const moduleIcons = {
 };
 
 export default function ModuleGrid() {
-    const state = useEngineState();
-    const { config, selectedModules, setModules, toggleModule, suggestions, dependencyHints } = state;
+    const { config, selectedModules, setModules, toggleModule, dependencyHints, activePreset } = useEngineState(useShallow(state => ({
+        config: state.config,
+        selectedModules: state.selectedModules,
+        setModules: state.setModules,
+        toggleModule: state.toggleModule,
+        dependencyHints: state.dependencyHints,
+        activePreset: state.activePreset
+    })));
+    
     const modules = getModuleRegistry(config.lang);
     const t = getTranslation(config.lang);
+    
+    const suggestions = useMemo(() => {
+        return getSuggestions(config, selectedModules, activePreset);
+    }, [config, selectedModules, activePreset]);
 
     return (
-        <section className="card delay-4">
-            <div className="modules-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+        <section className="card delay-4" style={{ position: 'relative', paddingTop: 0 }}>
+            <div className="modules-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', position: 'sticky', top: 0, background: 'var(--bg-card)', zIndex: 10, padding: '16px 0 12px 0', margin: '0 -16px 16px -16px', paddingLeft: '16px', paddingRight: '16px', borderBottom: '1px solid var(--border)' }}>
                 <div className="title-side">
                     <div className="card-title" style={{ marginBottom: 0 }}>
                         <span className="dot"></span> {t.modulesTitle}
@@ -63,23 +77,25 @@ export default function ModuleGrid() {
                     </span>
                     
                     {/* Intelligence Layer UI: Suggestions and Hints */}
-                    {(dependencyHints.length > 0 || suggestions.length > 0) && (
-                        <div style={{ marginTop: '8px', fontSize: '0.75rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                            {dependencyHints.map((hint, idx) => (
-                                <span key={`hint-${idx}`} style={{ color: 'var(--accent-1)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                                    <Lightbulb size={12} /> {hint}
-                                </span>
-                            ))}
-                            {suggestions.map((sug, idx) => {
-                                const modName = modules.find(m => m.id === sug)?.name;
-                                return (
-                                    <span key={`sug-${idx}`} style={{ color: 'var(--accent-2)', cursor: 'pointer' }} onClick={() => toggleModule(sug)}>
-                                        {t.aiSuggestion}: "{modName}" {t.suggestAdd} ({t.clickToAdd})
+                    <div style={{ marginTop: '8px', fontSize: '0.75rem', display: 'flex', flexDirection: 'column', gap: '4px', minHeight: '18px' }}>
+                        {(dependencyHints.length > 0 || suggestions.length > 0) && (
+                            <>
+                                {dependencyHints.map((hint, idx) => (
+                                    <span key={`hint-${hint.substring(0, 10)}-${idx}`} style={{ color: 'var(--accent-1)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                                        <Lightbulb size={12} /> {hint}
                                     </span>
-                                );
-                            })}
-                        </div>
-                    )}
+                                ))}
+                                {suggestions.map((sug) => {
+                                    const modName = modules.find(m => m.id === sug)?.name;
+                                    return (
+                                        <span key={`sug-${sug}`} style={{ color: 'var(--accent-2)', cursor: 'pointer' }} onClick={() => toggleModule(sug)}>
+                                            {t.aiSuggestion}: "{modName}" {t.suggestAdd} ({t.clickToAdd})
+                                        </span>
+                                    );
+                                })}
+                            </>
+                        )}
+                    </div>
                 </div>
                 <div className="modules-actions" style={{ display: 'flex', gap: '8px' }}>
                     <button 
@@ -110,6 +126,14 @@ export default function ModuleGrid() {
                             key={mod.id} 
                             className={`module-card ${isActive ? 'active' : ''}`}
                             onClick={() => toggleModule(mod.id)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    toggleModule(mod.id);
+                                }
+                            }}
                             style={{ position: 'relative', ...(isSuggested && !isActive ? { border: '1px dashed var(--accent-2)' } : {}) }}
                         >
                             <div className="module-icon"><Icon size={20} strokeWidth={1.5} /></div>

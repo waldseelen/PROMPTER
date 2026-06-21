@@ -1,10 +1,13 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { getTranslation } from '../locales/i18n';
 import { Target, Compass } from 'lucide-react';
 
 export default function TopicInput() {
-    const state = useEngineState();
-    const { config, setConfig } = state;
+    const { config, setConfig } = useEngineState(useShallow(state => ({
+        config: state.config,
+        setConfig: state.setConfig
+    })));
     const t = getTranslation(config.lang);
 
     return (
@@ -20,6 +23,8 @@ export default function TopicInput() {
                         placeholder={t.topicPlaceholder}
                         value={config.konu}
                         onChange={(e) => setConfig('konu', e.target.value)}
+                        required
+                        aria-required="true"
                     />
                 </div>
                 <div className="input-group">

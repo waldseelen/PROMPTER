@@ -1,9 +1,15 @@
-import { useEngineState } from '../state/engineState';
+import { useEngineState } from '../store/engineState';
+import { useShallow } from 'zustand/react/shallow';
 import { getTranslation } from '../locales/i18n';
 import { Sun, Moon, HelpCircle } from 'lucide-react';
 
 export default function Header() {
-    const { config, setTheme, setConfig, startTour } = useEngineState();
+    const { config, setTheme, setConfig, startTour } = useEngineState(useShallow(state => ({
+        config: state.config,
+        setTheme: state.setTheme,
+        setConfig: state.setConfig,
+        startTour: state.startTour
+    })));
     const t = getTranslation(config.lang);
 
     const toggleTheme = () => {

@@ -26,23 +26,24 @@ export const useEngineState = create(
             selectedModules: [],
             activePreset: null,
             injectedRules: [],
+            generatedPrompt: '',
             
             // 3. Intelligence / Hints
-            suggestions: [], 
             dependencyHints: [], 
             showTour: false,
             
             // Actions
             setConfig: (key, value) => set((state) => {
                 const newConfig = { ...state.config, [key]: value };
-                const suggestions = getSuggestions(newConfig, state.selectedModules, state.activePreset);
-                return { config: newConfig, suggestions };
+                return { config: newConfig };
             }),
             
             setTheme: (themeVal) => set((state) => ({
                 config: { ...state.config, theme: themeVal }
             })),
             
+            setGeneratedPrompt: (prompt) => set({ generatedPrompt: prompt }),
+
             toggleModule: (id) => set((state) => {
                 const isSelected = state.selectedModules.includes(id);
                 let newModules = isSelected 
@@ -61,14 +62,11 @@ export const useEngineState = create(
                     newModules = resolved;
                 }
                 
-                const suggestions = getSuggestions(state.config, newModules, state.activePreset);
-                
                 return { 
                     selectedModules: newModules, 
                     activePreset: null, // User override breaks the pure preset
                     injectedRules: [],
-                    dependencyHints,
-                    suggestions
+                    dependencyHints
                 };
             }),
 
@@ -94,8 +92,7 @@ export const useEngineState = create(
                     selectedModules: newModules,
                     injectedRules: presetResult.injectRules || [],
                     config: newConfig,
-                    dependencyHints,
-                    suggestions: getSuggestions(newConfig, newModules, presetId)
+                    dependencyHints
                 };
             }),
 
@@ -105,8 +102,7 @@ export const useEngineState = create(
                     newModules = resolveDependencies(newModules, state.config.lang);
                 }
                 return { 
-                    selectedModules: newModules,
-                    suggestions: getSuggestions(state.config, newModules, state.activePreset)
+                    selectedModules: newModules
                 };
             }),
 
@@ -122,7 +118,7 @@ export const useEngineState = create(
                 activePreset: null,
                 injectedRules: [],
                 dependencyHints: [],
-                suggestions: [],
+                generatedPrompt: '',
                 config: { ...state.config, konu: '', alan: '' }
             }))
         }),
