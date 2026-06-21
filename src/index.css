@@ -890,3 +890,10 @@
                 display: none !important;
             }
         }
+
+        /* Scale down the layout for 125% OS scaling to match the 100% scaling view */
+        @media (max-width: 1550px) and (min-width: 1200px) {
+            body {
+                zoom: 0.8;
+            }
+        }
