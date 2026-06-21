@@ -1,16 +1,16 @@
+import { getModuleRegistry } from './moduleRegistry';
+
 export class DependencyGraph {
     constructor(modulesJson) {
         this.modules = {};
-        this.adjacencyList = {}; // Node -> Array of Nodes it DEPENDS ON
+        this.adjacencyList = {}; 
         
-        // Initialize graph
         modulesJson.forEach(mod => {
             this.modules[mod.id] = mod;
             this.adjacencyList[mod.id] = mod.requires || [];
         });
     }
 
-    // Resolves all dependencies for a given set of selected node IDs
     resolveDependencies(selectedIds) {
         const resolved = new Set(selectedIds);
         let addedNew = true;
@@ -30,20 +30,17 @@ export class DependencyGraph {
         return Array.from(resolved);
     }
 
-    // Topological Sort of the resolved nodes using Depth First Search (DFS)
-    // Returns sorted array of module objects. Throws if a cycle is detected.
     topologicalSort(resolvedIds) {
         const result = [];
         const visited = new Set();
         const visiting = new Set();
 
         const visit = (id) => {
-            if (visiting.has(id)) throw new Error(`Döngüsel Bağımlılık Tespit Edildi (Circular Dependency Detected): ${id}`);
+            if (visiting.has(id)) throw new Error(`Döngüsel Bağımlılık (Circular Dependency): ${id}`);
             if (!visited.has(id)) {
                 visiting.add(id);
                 const deps = this.adjacencyList[id] || [];
                 
-                // We must process dependencies FIRST so they appear before the node that requires them.
                 for (const dep of deps) {
                     if (resolvedIds.includes(dep)) {
                         visit(dep);
@@ -61,5 +58,31 @@ export class DependencyGraph {
         }
 
         return result;
+    }
+}
+
+// Global cached graphs
+let graphTR = null;
+let graphEN = null;
+
+export function resolveDependencies(selectedIds, lang = 'tr') {
+    const registry = getModuleRegistry(lang);
+    if (lang === 'tr') {
+        if (!graphTR) graphTR = new DependencyGraph(registry);
+        return graphTR.resolveDependencies(selectedIds);
+    } else {
+        if (!graphEN) graphEN = new DependencyGraph(registry);
+        return graphEN.resolveDependencies(selectedIds);
+    }
+}
+
+export function sortDependencies(resolvedIds, lang = 'tr') {
+    const registry = getModuleRegistry(lang);
+    if (lang === 'tr') {
+        if (!graphTR) graphTR = new DependencyGraph(registry);
+        return graphTR.topologicalSort(resolvedIds);
+    } else {
+        if (!graphEN) graphEN = new DependencyGraph(registry);
+        return graphEN.topologicalSort(resolvedIds);
     }
 }

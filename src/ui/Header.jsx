@@ -1,8 +1,8 @@
-import { useStore } from '../hooks/useStore';
+import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
 
 export default function Header() {
-    const { config, setTheme, setConfig } = useStore();
+    const { config, setTheme, setConfig } = useEngineState();
     const t = getTranslation(config.lang);
 
     const toggleTheme = () => {

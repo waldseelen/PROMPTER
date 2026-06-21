@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import ConfigPanel from './components/ConfigPanel';
-import PresetBar from './components/PresetBar';
-import ModuleGrid from './components/ModuleGrid';
-import ActionBar from './components/ActionBar';
-import PreviewPanel from './components/PreviewPanel';
-import Toast from './components/Toast';
-import { useStore } from './hooks/useStore';
+import Header from './ui/Header';
+import ConfigPanel from './ui/ConfigPanel';
+import PresetBar from './ui/PresetBar';
+import ModuleGrid from './ui/ModuleGrid';
+import ActionBar from './ui/ActionBar';
+import PreviewPanel from './ui/PreviewPanel';
+import Toast from './ui/Toast';
+import { useEngineState } from './state/engineState';
 import { getTranslation } from './locales/i18n';
 import './index.css';
 
 export default function App() {
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [toasts, setToasts] = useState([]);
-    const { config } = useStore();
+    const state = useEngineState();
+    const { config } = state;
     const t = getTranslation(config.lang);
 
     useEffect(() => {
@@ -41,11 +42,19 @@ export default function App() {
     return (
         <div className="app">
             <Header />
-            <ConfigPanel />
-            <PresetBar />
-            <ModuleGrid />
-            <ActionBar setGeneratedPrompt={setGeneratedPrompt} showToast={showToast} />
-            <PreviewPanel generatedPrompt={generatedPrompt} />
+            <main className="container">
+                <div className="layout-grid">
+                    <div className="sidebar">
+                        <ConfigPanel />
+                    </div>
+                    <div className="main-content">
+                        <PresetBar />
+                        <ModuleGrid />
+                        <ActionBar setGeneratedPrompt={setGeneratedPrompt} showToast={showToast} />
+                        <PreviewPanel generatedPrompt={generatedPrompt} />
+                    </div>
+                </div>
+            </main>
             
             <div className="toast-container">
                 {toasts.map(toast => (

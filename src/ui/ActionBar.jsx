@@ -1,11 +1,12 @@
-import { useStore } from '../hooks/useStore';
-import { generatePrompt, checkPromptLength } from '../engine/promptCompiler';
+import { useEngineState } from '../state/engineState';
+import { assembleFinalPrompt } from '../compiler/finalPromptAssembler';
 import { copyToClipboard, openInAI } from '../utils/aiRouter';
 import { SiGooglegemini, SiAnthropic, SiPerplexity, SiOpenaigym } from '@icons-pack/react-simple-icons';
 import { getTranslation } from '../locales/i18n';
 
 export default function ActionBar({ setGeneratedPrompt, showToast }) {
-    const { config, selectedModules, resetAll } = useStore();
+    const state = useEngineState();
+    const { config, selectedModules, clearAll } = state;
     const t = getTranslation(config.lang);
 
     const handleGenerate = () => {
@@ -17,7 +18,7 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
             showToast(t.toastNeedModule, 'warn');
             return;
         }
-        const prompt = generatePrompt(config, selectedModules);
+        const prompt = assembleFinalPrompt(state);
         setGeneratedPrompt(prompt);
         showToast(t.toastSuccess);
         setTimeout(() => {
@@ -27,7 +28,7 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
     };
 
     const handleCopy = () => {
-        const prompt = generatePrompt(config, selectedModules);
+        const prompt = assembleFinalPrompt(state);
         if (!prompt) {
             showToast(t.toastNeedPrompt, 'warn');
             return;
@@ -39,7 +40,7 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
     };
 
     const handleOpenAI = (aiName) => {
-        const prompt = generatePrompt(config, selectedModules);
+        const prompt = assembleFinalPrompt(state);
         if (!prompt) {
             showToast(t.toastNeedPrompt, 'warn');
             return;
@@ -71,7 +72,7 @@ export default function ActionBar({ setGeneratedPrompt, showToast }) {
             <button className="btn btn-secondary" style={{ background: '#22b8cd', color: '#fff', borderColor: '#22b8cd' }} onClick={() => handleOpenAI('perplexity')}>
                 <SiPerplexity size={18} /> Perplexity
             </button>
-            <button className="btn btn-secondary" onClick={() => { resetAll(); setGeneratedPrompt(''); showToast(t.toastReset); }}>
+            <button className="btn btn-secondary" onClick={() => { clearAll(); setGeneratedPrompt(''); showToast(t.toastReset); }}>
                 <span>↺</span> {t.btnReset}
             </button>
         </div>

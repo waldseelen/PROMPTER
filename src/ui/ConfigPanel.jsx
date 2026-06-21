@@ -1,8 +1,9 @@
-import { useStore } from '../hooks/useStore';
+import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
 
 export default function ConfigPanel() {
-    const { config, setConfig } = useStore();
+    const state = useEngineState();
+    const { config, setConfig } = state;
     const t = getTranslation(config.lang);
 
     return (

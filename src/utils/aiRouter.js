@@ -1,5 +1,3 @@
-import { checkPromptLength } from '../engine/promptCompiler';
-
 const AI_URLS = {
     chatgpt: 'https://chatgpt.com/?q=',
     claude: 'https://claude.ai/new?q=',
@@ -34,7 +32,7 @@ export function copyToClipboard(text, onSuccess, onError) {
 export function openInAI(aiName, prompt, onLengthWarning, onSuccessCopy) {
     if (!prompt) return;
 
-    const { isTooLongForUrl } = checkPromptLength(prompt);
+    const isTooLongForUrl = prompt.length > 4000;
     
     if (isTooLongForUrl) {
         // Prompt is too long to safely put in a URL. 
