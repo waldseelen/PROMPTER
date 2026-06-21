@@ -3,42 +3,42 @@
     "id": "kalibrasyon",
     "icon": "🎯",
     "name": "Level Calibration",
-    "desc": "Assess level with 3 questions",
-    "explain": "Adapts depth and terminology based on your current knowledge level.",
+    "desc": "Test your level with 3 questions",
+    "explain": "Calibrates your level with 3 targeted questions before explaining, scaling all subsequent content.",
     "requires": [],
-    "prompt": "0. LEVEL CALIBRATION\nBefore starting, ask 3 short, targeted questions to assess my knowledge.\nDetermine my level based on answers: Novice / Intermediate / Advanced / Expert.\nScale all subsequent explanations to this level.",
+    "prompt": "0. LEVEL CALIBRATION\nBefore explaining the topic in depth, ask me 3 short, targeted questions to precisely calibrate my current knowledge level. The questions should scale from easy, medium, to difficult. Do not start explaining the topic until you receive my answers; determine my level (Novice / Intermediate / Advanced / Expert) and adjust all subsequent explanations accordingly.",
     "layer": "foundation"
   },
   {
     "id": "onkosul",
     "icon": "🗺️",
     "name": "Prerequisite Map",
-    "desc": "What to know first?",
-    "explain": "Lists fundamental concepts required before learning this topic.",
+    "desc": "What should be known?",
+    "explain": "Lists foundational concepts required before learning this topic.",
     "requires": [],
-    "prompt": "PREREQUISITE MAP\nList the prerequisites for learning this topic.\n- Mandatory prerequisites\n- Helpful prerequisites\n- Counterintuitive but useful concepts\nCreate a learning tree.",
+    "prompt": "PREREQUISITE MAP\nList the foundational sub-concepts that must already be established in my mind to learn this topic efficiently. Structure the output with these headings:\n- Mandatory Prerequisites (Without these, comprehension is impossible)\n- Helpful Prerequisites (Concepts that will accelerate learning)\n- Linked Concepts (Intuitively unrelated fields that build mental bridges)\nProvide a simple hierarchical list or tree diagram showing the dependency chain.",
     "layer": "foundation"
   },
   {
     "id": "sirasi",
     "icon": "🎯",
     "name": "Learning Path",
-    "desc": "Best order to learn",
+    "desc": "In what sequence?",
     "explain": "Breaks down the topic into the most efficient logical learning sequence.",
     "requires": [
       "onkosul"
     ],
-    "prompt": "LEARNING PATH\nCreate the most efficient learning sequence for this topic.\nFor each stage:\n- Objective\n- Concepts to learn\n- Success criteria",
+    "prompt": "LEARNING PATH\nCreate the most logical and efficient step-by-step learning roadmap for this topic.\nFor each stage, specify:\n1. Stage Objective (What problem are we solving in this step?)\n2. Sub-concepts to Focus On\n3. Success Criteria (What question must I be able to answer or what must I be able to do to pass this stage?)",
     "layer": "foundation"
   },
   {
     "id": "ontoloji",
     "icon": "🧬",
-    "name": "Ontology (First Principles)",
-    "desc": "Identify building blocks",
-    "explain": "Finds the smallest indivisible parts of the system and questions their existence.",
+    "name": "Ontology (Principles)",
+    "desc": "Define core building blocks",
+    "explain": "Deconstructs the topic to its most basic, indivisible building blocks and explains why they exist.",
     "requires": [],
-    "prompt": "ONTOLOGY (First Principles)\nIdentify the 3-5 most fundamental, indivisible building blocks of this topic.\nExplain the definition, role, and relationship of each.\nShow why the concept could not exist without these components.",
+    "prompt": "ONTOLOGY (First Principles)\nIdentify the 3-5 fundamental, indivisible building blocks (atomic concepts) that constitute the essence of this topic.\n- Define the technical representation of each building block.\n- Explain its role within the system and its structural links to other blocks.\n- Demonstrate why these first principles are absolutely mandatory for the concept to exist.",
     "layer": "foundation"
   },
   {
@@ -46,11 +46,11 @@
     "icon": "⚡",
     "name": "Causal Necessity",
     "desc": "Explain why it exists",
-    "explain": "Proves the purpose of each part and why the system would fail without it.",
+    "explain": "Proves the purpose of each component, analyzing why the system fails without it.",
     "requires": [
       "ontoloji"
     ],
-    "prompt": "CAUSAL NECESSITY\nAnswer for each building block:\n- Why would the system fail if this component disappeared?\n- What is its evolutionary, physical, or logical necessity?\n- Are there alternatives? Why was this one chosen?",
+    "prompt": "CAUSAL NECESSITY\nFor each building block identified in the ontology, answer the following causality questions:\n- If this component is removed from the system, why and how does the system fail? (Absence analysis)\n- What is the logical, physical, or evolutionary necessity for this component to exist?\n- What alternative designs or components could have been considered, and why was the current one selected?",
     "layer": "foundation"
   },
   {
@@ -58,11 +58,11 @@
     "icon": "⚙️",
     "name": "Mechanism",
     "desc": "Input → Process → Output",
-    "explain": "Maps out how the system works step-by-step like a machine.",
+    "explain": "Deconstructs the mechanics of the system step-by-step like a machine.",
     "requires": [
       "ontoloji"
     ],
-    "prompt": "MECHANISM\nAnalyze the system's working mechanism step by step:\n- Input: What goes into the system?\n- Process: What happens inside? Explain sequentially.\n- Output: What is produced?\n- Mention any feedback loops.",
+    "prompt": "MECHANISM\nMap the working principle of the system step-by-step like a dynamic machine:\n- Inputs (What triggers the system? What are the starting parameters?)\n- Process (What are the physical, logical, or algorithmic steps inside? Explain in sequence.)\n- Outputs (What is produced at the end of the process, and where does it go?)\n- Feedback Loops (How does the system self-regulate or check its state?)\nFormat: Use a step-by-step flowchart or table to visualize the process.",
     "layer": "mechanism"
   },
   {
@@ -70,23 +70,23 @@
     "icon": "🧱",
     "name": "Knowledge Construction",
     "desc": "Build from scratch",
-    "explain": "Reconstructs the concept from scratch through historical problems and solutions.",
+    "explain": "Rebuilds the concept step-by-step as if you are inventing it for the first time.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "KNOWLEDGE CONSTRUCTION\nRe-invent this topic from scratch as if humanity never knew it.\nAt each step:\n- The problem encountered\n- The solution produced\n- The new problem that arose",
+    "prompt": "KNOWLEDGE CONSTRUCTION\nNarrate the development of this topic as if humanity had no prior knowledge and were discovering it from scratch.\nAt each discovery step, outline:\n- The Core Problem or Need encountered\n- The Rational Solution engineered to solve this problem (the birth of the new concept)\n- New Side-Effects/Problems introduced by this solution, leading to the next development step",
     "layer": "mechanism"
   },
   {
     "id": "tersine",
     "icon": "🔄",
     "name": "Reverse Engineering",
-    "desc": "From output to cause",
-    "explain": "Analyzes the final output and traces backward to the processes that created it.",
+    "desc": "Result to cause",
+    "explain": "Analyzes the final output and traces backward to reconstruct the preceding steps.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "REVERSE ENGINEERING\nTake the output of this system.\nWork backwards to show me what processes must have occurred to reach this state.",
+    "prompt": "REVERSE ENGINEERING\nStart from the final output (result) of the system and work backward:\n- Analyze the final output.\n- Show what state or data must have existed in the immediately preceding step for this output to occur.\n- Trace backward, decomposing each step until you reach the initial system inputs.",
     "layer": "mechanism"
   },
   {
@@ -94,29 +94,29 @@
     "icon": "📜",
     "name": "Historical Evolution",
     "desc": "How and why it emerged",
-    "explain": "Explains the historical context and the problem this concept was designed to solve.",
+    "explain": "Explains what problems the concept was developed to solve historically.",
     "requires": [],
-    "prompt": "HISTORICAL EVOLUTION\n- What problem did this system/concept emerge to solve?\n- What existed before it?\n- What shortcomings did it address?\n- How is it expected to evolve in the future?",
+    "prompt": "HISTORICAL EVOLUTION\nAnalyze the evolution of this concept/technology over time in a chronological, problem-oriented manner:\n- What inadequate solution did people rely on before this concept was born?\n- What technological or scientific breakthrough triggered its birth?\n- What major versions or paradigm shifts did it undergo historically?\n- What is its current state-of-the-art status, and where is it heading next?",
     "layer": "context"
   },
   {
     "id": "rakip",
     "icon": "⚔️",
-    "name": "Rival Theories",
+    "name": "Competing Theories",
     "desc": "See the alternatives",
-    "explain": "Objectively evaluates alternative approaches with their pros and cons.",
+    "explain": "Evaluates alternative approaches along with their pros and cons.",
     "requires": [],
-    "prompt": "RIVAL THEORIES\nWhat are the alternative approaches to this topic?\n- Strengths\n- Weaknesses\n- Situations where they excel",
+    "prompt": "COMPETING THEORIES AND ALTERNATIVES\nExamine competing theories or technologies that offer alternative approaches to the problem solved by this topic.\nFormat: Present the comparison as a markdown table with these columns:\n- | Alternative / Competitor |\n- | Working Logic |\n- | Scenario where it is Superior |\n- | Scenario where it is Inferior |\n- | Choice Criterion |",
     "layer": "context"
   },
   {
     "id": "kontrast",
     "icon": "⚖️",
     "name": "Contrast Analysis",
-    "desc": "Compare with similar ideas",
-    "explain": "Clarifies the fine lines and differences between commonly confused concepts.",
+    "desc": "Compare with similar concepts",
+    "explain": "Clarifies boundaries between this concept and easily confused alternatives.",
     "requires": [],
-    "prompt": "CONTRAST ANALYSIS\nCompare this concept with 3 commonly confused alternatives.\nFor each:\n- Similarities\n- Critical differences\n- When to prefer which",
+    "prompt": "CONTRAST ANALYSIS\nCompare this concept with 3 similar concepts that are most frequently confused with it due to subtle distinctions.\nFor each pairing, outline:\n- Shared Grounds (Why are they confused?)\n- Critical Differences (What are the exact technical boundaries where they diverge?)\n- Rule of Thumb (A practical mental shortcut to immediately tell them apart)",
     "layer": "context"
   },
   {
@@ -124,85 +124,85 @@
     "icon": "🔗",
     "name": "Structural Mapping",
     "desc": "Map to your domain",
-    "explain": "Directly maps the concept to structures in your familiar domain to speed up understanding.",
+    "explain": "Maps the learning concept technically to a domain you already know.",
     "requires": [],
-    "prompt": "STRUCTURAL MAPPING\nMap this mechanism structurally to a perfectly matching system in the field of {{ALAN}}.\nThe mapping must be a technical projection, not a superficial analogy.\nClearly state where the analogy breaks down.",
+    "prompt": "STRUCTURAL MAPPING (Isomorphism)\nMap the working mechanism and logical equations of this topic to an equivalent system in the user's expertise field {{ALAN}}.\n- Avoid superficial metaphors; map the relationships at a technical, conceptual, or mathematical level.\n- Present the mapping in a clear table.\n- Detail where the analogy breaks down and no longer represents reality.",
     "layer": "context"
   },
   {
     "id": "disiplinler",
     "icon": "🔗",
-    "name": "Interdisciplinary Links",
-    "desc": "Connect to other fields",
-    "explain": "Finds the equivalent of this concept in physics, math, biology, or economics.",
+    "name": "Interdisciplinary",
+    "desc": "Link to other fields",
+    "explain": "Finds parallels in mathematics, physics, biology, or economics.",
     "requires": [],
-    "prompt": "INTERDISCIPLINARY LINKS\nShow corresponding principles of this topic in:\n- Mathematics\n- Physics\n- Biology\n- Economics",
+    "prompt": "INTERDISCIPLINARY CONNECTIONS\nFind reflections of the core principles of this topic in distant academic disciplines to build mental links:\n- Projection in Mathematics (Equational or logical equivalence)\n- Reflection in Physics (Similar principles in laws of nature)\n- Analogy in Biology (Similar mechanisms in organic systems)\n- Parallel in Economics or Sociology (Similar behaviors in human or market systems)",
     "layer": "context"
   },
   {
     "id": "mental",
     "icon": "🧠",
     "name": "Mental Model",
-    "desc": "Visual mental scene",
-    "explain": "Creates a single, memorable mental image or scenario.",
+    "desc": "Mental visual scene",
+    "explain": "Turns the concept into an intuitive visual scenario for easy recall.",
     "requires": [],
-    "prompt": "MENTAL MODEL\nIf I had to visualize this topic as a single scene, what would I see?\nCreate an intuitive, memorable mental model.\nState where the model aligns with reality and where it diverges.",
+    "prompt": "MENTAL MODEL\nCreate a single, memorable, and intuitive visual scene (mental model) that makes the working principle of this topic easy to visualize.\n- Describe the model (the components and dynamics you associate with it).\n- Explain the technical aspects where the model aligns perfectly with the actual concept.\n- Highlight potential pitfalls (where the model simplifies or diverges from reality).",
     "layer": "visualization"
   },
   {
     "id": "diagram",
     "icon": "📊",
-    "name": "Topic Graph (DAG)",
+    "name": "Concept Graph (DAG)",
     "desc": "Textual structure map",
-    "explain": "Draws directional and network relationships between concepts (ASCII).",
+    "explain": "Draws directed relationships between sub-concepts using ASCII or text diagrams.",
     "requires": [
       "ontoloji"
     ],
-    "prompt": "TOPIC GRAPH (DAG)\nExtract the sub-components of the topic as a DAG (directed acyclic graph):\n- Nodes\n- Dependencies\n- Critical points\nDraw this as a clear ASCII or textual structure diagram.",
+    "prompt": "CONCEPT GRAPH (DAG)\nDesign a Directed Acyclic Graph (DAG) showing how the sub-concepts of this topic feed into and depend on each other.\n- Draw a clean ASCII diagram (`[A] -> [B] -> [C]`) inside a code block for proper rendering.\n- Mark critical dependencies and bottlenecks with symbols.\n- Briefly write the relationship or data transferred on the arrows.",
     "layer": "visualization"
   },
   {
     "id": "simulasyon",
     "icon": "🎮",
     "name": "Simulation Mode",
-    "desc": "Inside out explanation",
-    "explain": "Puts you inside the system (e.g., as a blood cell or data packet) to experience the process.",
+    "desc": "Narrate from within",
+    "explain": "Simulates the process from the perspective of an internal component.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "SIMULATION MODE\nAct as if I am a component inside this system.\nTell me step-by-step what I experience. (e.g., as an electron in a transistor or a packet in a TCP network)",
+    "prompt": "SIMULATION MODE\nNarrate a first-person simulation as if I were a micro-level component inside this system (e.g., an electron in a transistor, a byte in a TCP packet, a protein in a cell).\n- What happens around me as the system runs? What physical or logical forces act on me?\n- What process do I undergo when the input arrives?\n- Describe step-by-step the final moment as I am transformed into the output.",
     "layer": "visualization"
   },
   {
     "id": "deney",
     "icon": "🧪",
     "name": "Thought Experiment",
-    "desc": "Run in the mind",
-    "explain": "Constructs extreme mental scenarios to test the principles of the concept.",
+    "desc": "Run in your mind",
+    "explain": "Sets up thought experiments to test principles in boundary conditions.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "THOUGHT EXPERIMENT\nCreate 3 thought experiments for me to understand this topic.\nDo not give the result immediately.\nAsk me to guess first.",
+    "prompt": "THOUGHT EXPERIMENTS\nConstruct 3 deep thought experiments to test the boundaries and core principles of this topic in my mind.\nInstructions: Describe the experiments but do not provide the results or answers directly. Ask me to think and predict first, leaving the answers for a subsequent explanation.",
     "layer": "visualization"
   },
   {
     "id": "yanilgilar",
     "icon": "❌",
     "name": "Misconceptions",
-    "desc": "Top 5 false beliefs",
-    "explain": "Explains conceptual traps most people fall into and why they are wrong.",
+    "desc": "Top 5 misconceptions",
+    "explain": "Lists common conceptual traps and why they are incorrect.",
     "requires": [],
-    "prompt": "MAJOR MISCONCEPTIONS\nList the 5 most common misconceptions about this topic.\nFor each:\n- What the misconception is\n- Why it is common\n- What the truth actually is",
+    "prompt": "COMMON MISCONCEPTIONS\nIdentify the 5 most common conceptual errors and mental traps regarding this topic.\nFormat: Present the output as a markdown table with these columns:\n- | Misconception (Conceptual Error) |\n- | Reason for Prevalence (Why does it feel intuitively correct?) |\n- | The Reality & Technical Explanation |\n- | Safeguard Rule (A practical rule of thumb to avoid this trap) |",
     "layer": "boundaries"
   },
   {
     "id": "varsayimlar",
     "icon": "🔍",
     "name": "Hidden Assumptions",
-    "desc": "What lies beneath?",
-    "explain": "Uncovers the unspoken assumptions that must be true for the system to work.",
+    "desc": "What is hidden below?",
+    "explain": "Reveals critical underlying assumptions necessary for stability.",
     "requires": [],
-    "prompt": "HIDDEN ASSUMPTIONS\nWhat assumptions is this topic built upon?\n- Explicit assumptions\n- Hidden assumptions\n- What happens if the assumption breaks?",
+    "prompt": "HIDDEN ASSUMPTIONS\nList the background assumptions that are silently accepted for this theory or system to run stably:\n- Explicit Assumptions (Commonly stated conditions)\n- Hidden Assumptions (Quiet design requirements often left unsaid)\n- Failure Scenario: If one of these assumptions fails or is violated, what breaks first, and how does the domino effect propagate?",
     "layer": "boundaries"
   },
   {
@@ -210,55 +210,55 @@
     "icon": "💥",
     "name": "Failure Modes",
     "desc": "When the system crashes",
-    "explain": "Technically explains under what conditions the theory fails or the system explodes.",
+    "explain": "Explains boundary conditions under which the system or theory breaks down.",
     "requires": [],
-    "prompt": "FAILURE MODES\nState under what conditions this concept/system collapses, falls short, or becomes invalid.\nExpress the boundary conditions with technical parameters.\nExplain the trigger and outcome for each failure mode.",
+    "prompt": "FAILURE MODES\nAnalyze the failure modes where the system or theory breaks down by pushing its technical or logical boundary conditions.\n- Define at least 3 failure scenarios.\n- Specify the triggering limit conditions (threshold values) for each scenario.\n- Explain how the system behaves during the failure and how this failure can be detected.",
     "layer": "boundaries"
   },
   {
     "id": "kirilma",
     "icon": "🚨",
-    "name": "Breaking Points",
-    "desc": "Where do things go wrong?",
-    "explain": "Finds the single points of failure and critical weaknesses in the system.",
+    "name": "Critical Weaknesses",
+    "desc": "Where things go wrong",
+    "explain": "Finds single points of failure and vital dependencies.",
     "requires": [
       "basarisizlik"
     ],
-    "prompt": "BREAKING POINTS\nWhat are the most sensitive points of this system?\n- Single points of failure\n- Critical dependencies\n- Breaking scenarios",
+    "prompt": "CRITICAL WEAKNESSES (SPOFs)\nIdentify the weakest links and critical dependencies in the architecture of this system:\n- Single Points of Failure (SPOFs - Where the failure of a single component halts the entire system)\n- Critical Dependencies (Vital external inputs the system depends on)\n- Failure Scenario: Describe the cascading effect if one of these failure points collapses, and what redundancy measures can prevent it.",
     "layer": "boundaries"
   },
   {
     "id": "olcek",
     "icon": "📈",
     "name": "Scale Analysis",
-    "desc": "When the system grows",
-    "explain": "Analyzes how rules change when the system scales 10x down or 100x up.",
+    "desc": "What happens when scaled?",
+    "explain": "Sistem 10x küçüldüğünde veya 100x büyüdüğünde kuralların nasıl değiştiğini analiz eder.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "SCALE ANALYSIS\nIf this system:\n- Shrinks by 10x\n- Grows by 100x\nWhat behaviors change?",
+    "prompt": "SCALE ANALYSIS\nAnalyze how the rules and behaviors change when the system's dimensions scale radically:\n- Micro Scale: If the system is shrunk 10x or load decreases 10x, what new constraints emerge?\n- Macro Scale: If the system scales up 100x or load increases 100x, what bottlenecks occur, and what architectural changes become mandatory?",
     "layer": "boundaries"
   },
   {
     "id": "celiski",
     "icon": "🔥",
     "name": "Contradiction Mode",
-    "desc": "Find paradoxes",
-    "explain": "Elevates you to researcher level by finding inconsistencies within the theory.",
+    "desc": "Find the paradoxes",
+    "explain": "Teorinin kendi içindeki tutarsızlıkları bularak araştırma seviyesine çıkmanızı sağlar.",
     "requires": [
       "varsayimlar"
     ],
-    "prompt": "CONTRADICTION MODE\nFind the paradoxes and contradictions within this topic.\n- Under what conditions does the theory break?\n- What logical dead-ends exist?\nTake me out of the surface level and into research depth.",
+    "prompt": "CONTRADICTIONS AND PARADOXES\nAnalyze logical dilemmas, unsolved paradoxes, or controversial aspects within the theoretical framework of this topic.\n- Explain at least 2 critical contradictions or paradoxes.\n- Show what causes these contradictions (e.g., inadequacy of boundary conditions, flawed assumptions).\n- Elevate the topic from superficial concepts into advanced scientific/technical inquiry.",
     "layer": "boundaries"
   },
   {
     "id": "ornekler",
     "icon": "🌍",
-    "name": "Real World Examples",
+    "name": "Real-World App",
     "desc": "3 concrete applications",
-    "explain": "Provides real-life, industrial, or natural examples of abstract concepts.",
+    "explain": "Soyut konseptlerin gerçek hayatta veya endüstride nasıl vücut bulduğunu gösterir.",
     "requires": [],
-    "prompt": "REAL WORLD EXAMPLES\nGive 3 concrete examples where this concept is used/observed in the real world.\nFor each example:\n- Context\n- How it's applied\n- Outcome and impact",
+    "prompt": "REAL-WORLD APPLICATIONS\nProvide 3 concrete, technical real-world applications where this concept is implemented in industry or nature.\nFor each example, detail:\n- Context (Which company, lab, or system uses it?)\n- Technical Integration (How exactly does the practical mechanism of the concept run there?)\n- Impact & Efficiency (What performance, cost, or functional gain was achieved through this? Use data.)",
     "layer": "application"
   },
   {
@@ -266,19 +266,19 @@
     "icon": "🧠",
     "name": "Think Like an Expert",
     "desc": "Expert mindset",
-    "explain": "Reveals the subtle details experts notice instantly and how they developed that intuition.",
+    "explain": "Acemilerin gözden kaçırdığı detayları uzmanların anında nasıl fark ettiğini açıklar.",
     "requires": [],
-    "prompt": "THINK LIKE AN EXPERT\nWhat would an expert in this field notice immediately that a novice would miss?\nGive me 5 examples.",
+    "prompt": "THINK LIKE AN EXPERT\nAnalyze the mental filters and approaches of a senior expert who has practiced this topic for years:\n- What are 3 hidden errors that novices make but experts instantly spot and avoid?\n- When an expert looks at the system, what are the first metrics or behaviors they check?\n- What heuristics do experts use when debugging or problem-solving in this field?",
     "layer": "application"
   },
   {
     "id": "pareto",
     "icon": "📐",
     "name": "80/20 Analysis",
-    "desc": "20% effort, 80% grasp",
-    "explain": "Filters the noise and focuses on the critical 20% that provides 80% of the understanding.",
+    "desc": "20% effort, 80% understanding",
+    "explain": "Tüm detaya boğulmak yerine, işin özünü oluşturan kritik %20'lik dilimi filtreler.",
     "requires": [],
-    "prompt": "80/20 ANALYSIS\nIf I could only learn 20% of this topic, what parts should I learn to achieve 80% of the understanding?\nList this critical 20% in order of priority and explain why each is critical.",
+    "prompt": "80/20 ANALYSIS (Pareto Principle)\nInstead of getting lost in details, filter the critical 20% core that provides 80% of the comprehension or utility of this topic.\n- List these vital 20% concepts and rules in order of priority.\n- Explain why each has a multiplier effect.\n- Specify under what conditions the remaining 80% of details can be safely ignored.",
     "layer": "application"
   },
   {
@@ -286,22 +286,22 @@
     "icon": "📚",
     "name": "Resource Map",
     "desc": "Next steps",
-    "explain": "Recommends calibrated resources (books, articles, tools) to continue learning.",
+    "explain": "Öğrenmeye devam etmek için kalibre edilmiş kaynaklar (kitap, video vb.) önerir.",
     "requires": [],
-    "prompt": "RESOURCE MAP\nTo learn this topic deeply, recommend the best resources (books, articles, docs):\n- Beginner level\n- Intermediate level\n- Advanced level",
+    "prompt": "RESOURCE MAP\nRecommend the highest-quality, authoritative, and calibrated resources to continue studying this topic independently.\nFormat: List recommendations in these categories:\n- Foundational Resources (Best books, articles, or documentation for beginners)\n- Advanced Resources (Academic papers, expert books, or open-source repositories)\n- Practice Tools (Libraries, simulators, or sandboxes to test what you learn)",
     "layer": "application"
   },
   {
     "id": "quiz",
     "icon": "📝",
-    "name": "Comprehension Test",
-    "desc": "3 core + 2 app + 1 transfer",
-    "explain": "Asks questions that measure knowledge and force you to apply it to new scenarios.",
+    "name": "Comprehension Quiz",
+    "desc": "Test knowledge & application",
+    "explain": "Gerçekten anladığınızı teyit etmek için hem bilgi ölçen hem de uygulatan sorular sorar.",
     "requires": [
       "ontoloji",
       "mekanizma"
     ],
-    "prompt": "COMPREHENSION TEST\nTo test my understanding:\n- 3 core knowledge questions\n- 2 application questions (apply concept to a concrete situation)\n- 1 transfer question (apply concept to a completely different field)\nDo not give the answers immediately; wait for me to think.",
+    "prompt": "COMPREHENSION QUIZ\nPrepare a quiz that measures deep conceptual comprehension rather than rote memory.\n- 3 Conceptual Understanding Questions (Testing connections between sub-concepts)\n- 2 Technical Scenario Questions (Applying the concept to practical or broken engineering situations)\n- 1 Transfer Question (Requiring me to map the logic to a completely different discipline)\nInstruction: Ask the questions but do not provide the answers immediately. Await my response first.",
     "layer": "evaluation"
   },
   {
@@ -309,43 +309,43 @@
     "icon": "🔄",
     "name": "Transfer Questions",
     "desc": "Apply to other fields",
-    "explain": "Triggers creativity by asking you to apply a structure to an unrelated discipline.",
+    "explain": "Öğrentiğiniz yapıyı, birbirinden alakasız görünen bambaşka bir disipline uyarlamanızı ister.",
     "requires": [
       "mekanizma"
     ],
-    "prompt": "TRANSFER QUESTIONS\nCreate 3 thought experiments that apply the logic of this concept to a completely different field.\nE.g., \"What happens if you apply these principles to X?\"\nThese questions should separate true understanding from superficial memorization.",
+    "prompt": "TRANSFER QUESTIONS\nAsk deep thought and application questions that map the core logic of this concept onto 3 completely unrelated disciplines.\nExample format: 'If we take the rule X of this system and apply it to problem Z in field Y, what mechanism emerges?'\nThese questions should build new neural connections, forcing me to abstract and generalize the concept.",
     "layer": "evaluation"
   },
   {
     "id": "gelecek",
     "icon": "🔮",
-    "name": "Future Projection",
+    "name": "Future Projections",
     "desc": "Where is it heading?",
-    "explain": "Predicts how this topic or technology will evolve in 5, 10, or 50 years.",
+    "explain": "Bu konunun veya teknolojinin 5, 10 veya 50 yıl içinde nasıl şekilleneceğini tahmin eder.",
     "requires": [
       "evrim"
     ],
-    "prompt": "FUTURE PROJECTION\nProject the evolution of this topic/technology into the future.\n- What will it look like in 5 years?\n- What will it look like in 20 years?\n- What paradigm shifts will it trigger in other industries?",
+    "prompt": "FUTURE PROJECTIONS\nProject how this concept/technology will evolve in the coming years and what paradigm shifts it will trigger:\n- 5 Years Out: What updates and integrations are expected in the near future?\n- 20 Years Out: Long term, what will this concept transform into, or what will replace it?\n- Multiplier Effect: What revolutionary impacts will this evolution trigger in adjacent industries?",
     "layer": "projection"
   },
   {
     "id": "meta",
     "name": "Meta-Learning",
-    "desc": "How to learn it best?",
-    "explain": "Lists the most efficient ways to study, practice, and master this specific topic or skill.",
+    "desc": "How to study better",
+    "explain": "Bu konuyu veya yeteneği kendi başınıza en verimli şekilde nasıl geliştireceğinizi ve çalışacağınızı listeler.",
     "requires": [],
-    "prompt": "META-LEARNING STRATEGY\nHow can I master this topic fastest and most robustly?\n- Recommended study methods & roadmap\n- Common pitfalls to avoid\n- Best tools/resources for practice",
+    "prompt": "META-LEARNING STRATEGY\nExtract cognitive strategies to learn this topic fastest, with maximum retention, and minimum friction:\n- Fast Mastery Path (The most efficient learning roadmap and feedback/practice loops)\n- Cognitive Traps (Where do learners waste the most time, and how do you avoid it?)\n- Feedback Loop (How can I test and correct my own progress and misunderstandings fastest?)",
     "layer": "meta"
   },
   {
     "id": "senaryo",
     "name": "Crisis Scenarios",
-    "desc": "Disaster & failure modes",
-    "explain": "Examines what happens when the system or structure completely fails and how to recover.",
+    "desc": "Failure or disaster moments",
+    "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
     "requires": [
       "kirilma"
     ],
-    "prompt": "CRISIS AND FAILURE SCENARIOS\nHow does this system/structure fail in the worst-case scenario?\n- Critical breaking points\n- Disaster scenarios\n- Recovery and mitigation steps",
+    "prompt": "CRISIS & COLLAPSE SCENARIOS\nAnalyze the disaster scenarios and collapse architectures this system might encounter under extreme conditions:\n- Triggering Crises (What external forces or internal failures initiate a cascading collapse?)\n- Collapse Mechanism (How does the system fail step-by-step? How does the domino effect propagate?)\n- Recovery Protocol (What emergency mitigation steps should be applied to recover from the failure or restore stability?)",
     "layer": "advanced"
   }
 ]
