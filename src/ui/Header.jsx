@@ -1,15 +1,13 @@
 import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
-import { Sun, Moon, Monitor } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 export default function Header() {
     const { config, setTheme, setConfig } = useEngineState();
     const t = getTranslation(config.lang);
 
     const toggleTheme = () => {
-        if (config.theme === 'system') setTheme('light');
-        else if (config.theme === 'light') setTheme('dark');
-        else setTheme('system');
+        setTheme(config.theme === 'light' ? 'dark' : 'light');
     };
 
     const toggleLang = () => {
@@ -17,9 +15,8 @@ export default function Header() {
     };
 
     const ThemeIcon = () => {
-        if (config.theme === 'light') return <Sun size={18} strokeWidth={1.5} />;
-        if (config.theme === 'dark') return <Moon size={18} strokeWidth={1.5} />;
-        return <Monitor size={18} strokeWidth={1.5} />;
+        if (config.theme === 'light') return <Moon size={18} strokeWidth={1.5} />;
+        return <Sun size={18} strokeWidth={1.5} />;
     };
 
     return (
