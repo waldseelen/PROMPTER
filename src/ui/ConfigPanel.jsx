@@ -1,5 +1,6 @@
 import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
+import { Target, Compass, GraduationCap, Workflow, Layers, FileText, BrainCircuit, Link } from 'lucide-react';
 
 export default function ConfigPanel() {
     const state = useEngineState();
@@ -8,11 +9,13 @@ export default function ConfigPanel() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <section className="card delay-1" style={{ marginBottom: 0 }}>
+            <section className="card" style={{ marginBottom: 0 }}>
                 <div className="card-title"><span className="dot"></span> {t.topicLabel || 'Hedef Tanımı'}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
-                        <label htmlFor="inp-konu">{t.topicLabel} <span style={{color: 'var(--accent-1)'}}>*</span></label>
+                        <label htmlFor="inp-konu" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <Target size={14} /> {t.topicLabel} <span style={{color: 'var(--text-secondary)'}}>*</span>
+                        </label>
                         <input 
                             type="text" 
                             id="inp-konu" 
@@ -22,7 +25,9 @@ export default function ConfigPanel() {
                         />
                     </div>
                     <div className="input-group">
-                        <label htmlFor="inp-alan">{t.domainLabel}</label>
+                        <label htmlFor="inp-alan" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <Compass size={14} /> {t.domainLabel}
+                        </label>
                         <input 
                             type="text" 
                             id="inp-alan" 
@@ -34,11 +39,13 @@ export default function ConfigPanel() {
                 </div>
             </section>
 
-            <section className="card delay-2" style={{ marginBottom: 0 }}>
+            <section className="card" style={{ marginBottom: 0 }}>
                 <div className="card-title"><span className="dot"></span> Parametreler</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
-                        <label htmlFor="sel-seviye">{t.levelLabel}</label>
+                        <label htmlFor="sel-seviye" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <GraduationCap size={14} /> {t.levelLabel}
+                        </label>
                         <select id="sel-seviye" value={config.seviye} onChange={(e) => setConfig('seviye', e.target.value)}>
                             <option value="otomatik">{t.levels.otomatik}</option>
                             <option value="acemi">{t.levels.acemi}</option>
@@ -48,7 +55,9 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-mod">{t.modeLabel}</label>
+                        <label htmlFor="sel-mod" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <Workflow size={14} /> {t.modeLabel}
+                        </label>
                         <select id="sel-mod" value={config.mod} onChange={(e) => setConfig('mod', e.target.value)}>
                             <option value="karma">{t.modes.karma}</option>
                             <option value="feynman">{t.modes.feynman}</option>
@@ -58,7 +67,9 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-derinlik">{t.depthLabel}</label>
+                        <label htmlFor="sel-derinlik" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <Layers size={14} /> {t.depthLabel}
+                        </label>
                         <select id="sel-derinlik" value={config.derinlik} onChange={(e) => setConfig('derinlik', e.target.value)}>
                             <option value="orta">{t.depths.orta}</option>
                             <option value="temel">{t.depths.temel}</option>
@@ -67,7 +78,9 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-format">{t.formatLabel}</label>
+                        <label htmlFor="sel-format" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                            <FileText size={14} /> {t.formatLabel}
+                        </label>
                         <select id="sel-format" value={config.format} onChange={(e) => setConfig('format', e.target.value)}>
                             <option value="markdown">{t.formats.markdown}</option>
                             <option value="tablo">{t.formats.tablo}</option>
@@ -83,8 +96,8 @@ export default function ConfigPanel() {
                             <input type="checkbox" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
                             <span className="slider"></span>
                         </label>
-                        <label style={{ margin: 0, cursor: 'pointer' }} onClick={() => setConfig('monolog', !config.monolog)}>
-                            {t.monologLabel}
+                        <label style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setConfig('monolog', !config.monolog)}>
+                            <BrainCircuit size={14} /> {t.monologLabel}
                         </label>
                     </div>
                     <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
@@ -92,8 +105,8 @@ export default function ConfigPanel() {
                             <input type="checkbox" checked={config.autoResolveDeps} onChange={(e) => setConfig('autoResolveDeps', e.target.checked)} />
                             <span className="slider"></span>
                         </label>
-                        <label style={{ margin: 0, cursor: 'pointer' }} onClick={() => setConfig('autoResolveDeps', !config.autoResolveDeps)}>
-                            {t.autoResolveLabel}
+                        <label style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setConfig('autoResolveDeps', !config.autoResolveDeps)}>
+                            <Link size={14} /> {t.autoResolveLabel}
                         </label>
                     </div>
                 </div>
