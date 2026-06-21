@@ -18,7 +18,8 @@ export const useEngineState = create(
                 monolog: false,
                 autoResolveDeps: true,
                 theme: 'system',
-                lang: 'tr'
+                lang: 'tr',
+                tourCompleted: false
             },
             
             // 2. Active Behaviors (Modules & Presets)
@@ -29,6 +30,7 @@ export const useEngineState = create(
             // 3. Intelligence / Hints
             suggestions: [], 
             dependencyHints: [], 
+            showTour: false,
             
             // Actions
             setConfig: (key, value) => set((state) => {
@@ -107,6 +109,13 @@ export const useEngineState = create(
                     suggestions: getSuggestions(state.config, newModules, state.activePreset)
                 };
             }),
+
+            startTour: () => set({ showTour: true }),
+            completeTour: () => set((state) => ({
+                showTour: false,
+                config: { ...state.config, tourCompleted: true }
+            })),
+            cancelTour: () => set({ showTour: false }),
 
             clearAll: () => set((state) => ({
                 selectedModules: [],

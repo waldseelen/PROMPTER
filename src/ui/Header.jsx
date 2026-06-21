@@ -1,9 +1,9 @@
 import { useEngineState } from '../state/engineState';
 import { getTranslation } from '../locales/i18n';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, HelpCircle } from 'lucide-react';
 
 export default function Header() {
-    const { config, setTheme, setConfig } = useEngineState();
+    const { config, setTheme, setConfig, startTour } = useEngineState();
     const t = getTranslation(config.lang);
 
     const toggleTheme = () => {
@@ -26,6 +26,15 @@ export default function Header() {
                 <p>{t.subtitle}</p>
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
+                <button 
+                    onClick={startTour}
+                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', width: '28px', height: '28px' }}
+                    title={t.tour?.btnReplay || 'Quick Tour'}
+                    onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
+                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+                >
+                    <HelpCircle size={18} strokeWidth={1.5} />
+                </button>
                 <button 
                     onClick={toggleLang}
                     style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', padding: '2px 8px', color: 'var(--text-secondary)', fontWeight: 600, transition: 'all 0.2s', height: '28px', display: 'flex', alignItems: 'center' }}

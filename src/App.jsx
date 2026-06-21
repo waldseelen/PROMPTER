@@ -7,6 +7,7 @@ import TopicInput from './ui/TopicInput';
 import ActionBar from './ui/ActionBar';
 import PreviewPanel from './ui/PreviewPanel';
 import Toast from './ui/Toast';
+import OnboardingTour from './ui/OnboardingTour';
 import { useEngineState } from './state/engineState';
 import { getTranslation } from './locales/i18n';
 import './index.css';
@@ -15,8 +16,14 @@ export default function App() {
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [toasts, setToasts] = useState([]);
     const state = useEngineState();
-    const { config } = state;
+    const { config, startTour } = state;
     const t = getTranslation(config.lang);
+
+    useEffect(() => {
+        if (!config.tourCompleted) {
+            startTour();
+        }
+    }, [config.tourCompleted, startTour]);
 
     useEffect(() => {
         const root = document.documentElement;
@@ -65,6 +72,7 @@ export default function App() {
                     <Toast key={toast.id} msg={toast.msg} type={toast.type} />
                 ))}
             </div>
+            <OnboardingTour />
         </div>
     );
 }

@@ -86,7 +86,36 @@ export const i18n = {
  suggestAdd: 'kapsamı genişletmek için eklenebilir.',
  statModules: 'Modül',
  statLayers: 'Katman Derinliği',
- statComplexity: 'Karmaşıklık Skoru'
+ statComplexity: 'Karmaşıklık Skoru',
+ tour: {
+    btnSkip: 'Geç',
+    btnNext: 'Sonraki',
+    btnBack: 'Geri',
+    btnFinish: 'Bitir',
+    btnReplay: 'Kullanım Turu',
+    steps: [
+      {
+        title: "PROMPTER'a Hoş Geldiniz!",
+        content: "Yapay zekadan en derinlikli ve yapılandırılmış yanıtları almak için tasarlanmış gelişmiş parametrik prompt mühendisine adım attınız. Bu kısa turda arayüzü hızlıca tanıyalım.",
+        selector: "body"
+      },
+      {
+        title: "1. Parametre Konfigürasyonu",
+        content: "Buradan yapay zekanın bilgi seviyesini, öğrenme modunu (Feynman, Sokratik vb.), analiz derinliğini ve çıktı formatını ayarlayabilirsiniz. İç Ses (Reasoning) modunu açarak AI'ın arka plandaki düşünme adımlarını tetikleyebilirsiniz.",
+        selector: ".sidebar"
+      },
+      {
+        title: "2. Şablonlar ve Öğrenme Modülleri",
+        content: "Üstteki hazır şablonlarla tek tıkla en iyi ayarları yükleyebilir, altındaki modülleri (Analoji, Kodlama, Quiz vb.) tek tek seçerek promptunuzun hangi öğrenme başlıklarını içereceğini belirleyebilirsiniz.",
+        selector: ".main-content"
+      },
+      {
+        title: "3. Konu Girişi ve Üretim",
+        content: "Öğrenmek istediğiniz konuyu ve bildiğiniz uzmanlık alanını yazıp 'Prompt Üret' butonuna tıklayın. Oluşan promptu kopyalayarak ChatGPT, Claude veya Gemini gibi AI modellerine doğrudan yapıştırabilirsiniz.",
+        selector: ".right-sidebar"
+      }
+    ]
+  }
  },
  en: {
  badge: 'PROMPTER',
@@ -175,7 +204,36 @@ export const i18n = {
  suggestAdd: 'recommended for better context.',
  statModules: 'Modules',
  statLayers: 'Layers Deep',
- statComplexity: 'Complexity Score'
+ statComplexity: 'Complexity Score',
+ tour: {
+    btnSkip: 'Skip',
+    btnNext: 'Next',
+    btnBack: 'Back',
+    btnFinish: 'Finish',
+    btnReplay: 'Quick Tour',
+    steps: [
+      {
+        title: "Welcome to PROMPTER!",
+        content: "You have entered the advanced parametric prompt engineer designed to get the most structured and deep responses from AI. Let's take a quick tour of the interface.",
+        selector: "body"
+      },
+      {
+        title: "1. Parameter Configuration",
+        content: "Here you can adjust the AI's knowledge level, learning mode (Feynman, Socratic, etc.), analysis depth, and output format. Toggle Internal Monologue (Reasoning) to activate the AI's background thinking steps.",
+        selector: ".sidebar"
+      },
+      {
+        title: "2. Presets & Learning Modules",
+        content: "Apply quick presets at the top or select individual learning modules (Analogy, Coding, Quiz, etc.) below to define exactly what learning categories your prompt will cover.",
+        selector: ".main-content"
+      },
+      {
+        title: "3. Topic Input & Generation",
+        content: "Type the topic you want to learn and your expertise, then click 'Generate Prompt'. Copy the generated prompt and paste it directly into AI models like ChatGPT, Claude, or Gemini.",
+        selector: ".right-sidebar"
+      }
+    ]
+  }
  }
 };
 
