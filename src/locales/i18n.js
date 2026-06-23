@@ -54,6 +54,13 @@ export const i18n = {
  yaratici: 'Yaratıcı Sentez'
  },
  modulesTitle: 'Öğrenme Modülleri',
+ categories: {
+    foundation: 'Temeller & Giriş',
+    mechanism: 'İşleyiş & Simülasyon',
+    context: 'Bağlantılar',
+    boundaries: 'Sınırlar & Riskler',
+    application: 'Pratik & Gelişim'
+  },
  selectAll: 'Tümünü Seç',
  clearAll: 'Temizle',
  reqsLabel: 'Gereksinimler',
@@ -172,6 +179,13 @@ export const i18n = {
  yaratici: 'Creative Synth'
  },
  modulesTitle: 'Learning Modules',
+ categories: {
+    foundation: 'Foundations & Intro',
+    mechanism: 'Mechanics & Sim',
+    context: 'Connections',
+    boundaries: 'Limits & Risks',
+    application: 'Practice & Growth'
+  },
  selectAll: 'Select All',
  clearAll: 'Clear All',
  reqsLabel: 'Requires',

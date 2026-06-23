@@ -10,7 +10,8 @@ import {
     Link, Combine, Brain, Component, PlaySquare, FlaskConical, 
     AlertTriangle, LightbulbOff, Lightbulb, XOctagon, Zap, Maximize, 
     Shuffle, TextQuote, BadgeCheck, PieChart, BookMarked, 
-    CheckSquare, MoveRight, Telescope, Box, Flame, GraduationCap 
+    CheckSquare, MoveRight, Telescope, Box, Flame, GraduationCap,
+    Baby, GitMerge, Code
 } from 'lucide-react';
 
 const moduleIcons = {
@@ -45,7 +46,10 @@ const moduleIcons = {
     transfer: MoveRight,
     gelecek: Telescope,
     meta: GraduationCap,
-    senaryo: Flame
+    senaryo: Flame,
+    eli5: Baby,
+    karar: GitMerge,
+    kodlama: Code
 };
 
 export default function ModuleGrid() {
@@ -115,48 +119,66 @@ export default function ModuleGrid() {
                 </div>
             </div>
             
-            <div className="modules-grid">
-                {modules.map(mod => {
-                    const isActive = selectedModules.includes(mod.id);
-                    const isSuggested = suggestions.includes(mod.id);
-                    const Icon = moduleIcons[mod.id] || Box;
+            <div className="categories-container">
+                {['foundation', 'mechanism', 'context', 'boundaries', 'application'].map(catKey => {
+                    const catModules = modules.filter(m => m.layer === catKey);
+                    const catTitle = t.categories?.[catKey] || catKey;
+                    const activeCount = catModules.filter(m => selectedModules.includes(m.id)).length;
                     
                     return (
-                        <div 
-                            key={mod.id} 
-                            className={`module-card ${isActive ? 'active' : ''}`}
-                            onClick={() => toggleModule(mod.id)}
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    toggleModule(mod.id);
-                                }
-                            }}
-                            style={{ position: 'relative', ...(isSuggested && !isActive ? { border: '1px dashed var(--accent-2)' } : {}) }}
-                        >
-                            <div className="module-icon"><Icon size={20} strokeWidth={1.5} /></div>
-                            <div className="module-info">
-                                <div className="module-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                    {mod.name}
-                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--text-secondary)', color: 'var(--bg-card)', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
-                                </div>
-                                <div className="module-desc">{mod.desc}</div>
+                        <div key={catKey} className={`category-column category-${catKey}`}>
+                            <div className="category-column-header">
+                                <span className="category-column-title">{catTitle}</span>
+                                <span className="category-column-counter">
+                                    {activeCount} / {catModules.length}
+                                </span>
                             </div>
+                            <div className="category-modules-list">
+                                {catModules.map(mod => {
+                                    const isActive = selectedModules.includes(mod.id);
+                                    const isSuggested = suggestions.includes(mod.id);
+                                    const Icon = moduleIcons[mod.id] || Box;
+                                    
+                                    return (
+                                        <div 
+                                            key={mod.id} 
+                                            className={`module-card ${isActive ? 'active' : ''} ${isSuggested && !isActive ? 'suggested' : ''}`}
+                                            onClick={() => toggleModule(mod.id)}
+                                            role="button"
+                                            tabIndex={0}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    e.preventDefault();
+                                                    toggleModule(mod.id);
+                                                }
+                                            }}
+                                            style={{ position: 'relative' }}
+                                        >
+                                            <div className="module-icon"><Icon size={20} strokeWidth={1.5} /></div>
+                                            <div className="module-info">
+                                                <div className="module-name" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                    {mod.name}
+                                                    {isSuggested && !isActive && <span style={{ fontSize: '0.6rem', background: 'var(--text-secondary)', color: 'var(--bg-card)', padding: '1px 4px', borderRadius: '4px' }}>AI</span>}
+                                                </div>
+                                                <div className="module-desc">{mod.desc}</div>
+                                            </div>
 
-                            {/* Custom Theme-Aware Tooltip */}
-                            <div className="module-tooltip">
-                                <div className="tooltip-title">{mod.name}</div>
-                                <div className="tooltip-explain">{mod.explain}</div>
-                                {mod.requires && mod.requires.length > 0 && (
-                                    <div className="tooltip-reqs">
-                                        <span className="tooltip-reqs-icon">🔗</span> {t.reqsLabel}: {mod.requires.map(reqId => {
-                                            const reqName = modules.find(m => m.id === reqId)?.name || reqId;
-                                            return `"${reqName}"`;
-                                        }).join(', ')}
-                                    </div>
-                                )}
+                                            {/* Custom Theme-Aware Tooltip */}
+                                            <div className="module-tooltip">
+                                                <div className="tooltip-title">{mod.name}</div>
+                                                <div className="tooltip-explain">{mod.explain}</div>
+                                                {mod.requires && mod.requires.length > 0 && (
+                                                    <div className="tooltip-reqs">
+                                                        <span className="tooltip-reqs-icon">🔗</span> {t.reqsLabel}: {mod.requires.map(reqId => {
+                                                            const reqName = modules.find(m => m.id === reqId)?.name || reqId;
+                                                            return `"${reqName}"`;
+                                                        }).join(', ')}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     );

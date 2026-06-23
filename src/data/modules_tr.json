@@ -1,5 +1,15 @@
 [
   {
+    "id": "eli5",
+    "icon": "👶",
+    "name": "5 Yaşındakine Anlat (ELI5)",
+    "desc": "En sade dille özetle",
+    "explain": "Karmaşık kavramları hiç bilmeyen birine anlatır gibi en basit benzetmelerle açıklar.",
+    "requires": [],
+    "prompt": "5 YAŞINDAKİNE ANLAT (ELI5)\nBu konuyu 5 yaşındaki bir çocuğa anlatır gibi son derece sade, anlaşılır ve karmaşık terimlerden arındırılmış bir dille açıkla. Günlük hayattan çok basit, akılda kalıcı benzetmeler (analojiler) kullan. Anlatımın sonunda konuyu tek bir cümleyle özetle.",
+    "layer": "foundation"
+  },
+  {
     "id": "kalibrasyon",
     "icon": "🎯",
     "name": "Seviye Kalibrasyonu",
@@ -32,6 +42,16 @@
     "layer": "foundation"
   },
   {
+    "id": "pareto",
+    "icon": "📐",
+    "name": "80/20 Analizi",
+    "desc": "%20 efor, %80 anlayış",
+    "explain": "Tüm detaya boğulmak yerine, işin özünü oluşturan kritik %20'lik dilimi filtreler.",
+    "requires": [],
+    "prompt": "80/20 ANALİZİ (Pareto İlkesi)\nBu konunun tüm detaylarında kaybolmak yerine, konuyu anlamanın veya uygulamanın %80'ini sağlayacak en kritik %20'lik dilimi (özü) filtrele.\n- Bu hayati %20'lik kavramları ve kuralları öncelik sırasıyla listele.\n- Her birinin neden çarpan etkisi yarattığını açıkla.\n- Geri kalan %80'lik detayların hangi durumlarda göz ardı edilebileceğini belirt.",
+    "layer": "foundation"
+  },
+  {
     "id": "ontoloji",
     "icon": "🧬",
     "name": "Ontoloji (İlkeler)",
@@ -54,6 +74,16 @@
     "layer": "foundation"
   },
   {
+    "id": "mental",
+    "icon": "🧠",
+    "name": "Mental Model",
+    "desc": "Zihinsel görsel sahne",
+    "explain": "Konuyu zihninizde anında canlandırabileceğiniz bir senaryo haline getirir.",
+    "requires": [],
+    "prompt": "MENTAL MODEL\nBu konunun çalışma prensibini zihinde canlandırmayı kolaylaştıracak, akılda kalıcı ve sezgisel tek bir görsel sahne (mental model) oluştur.\n- Modeli tasvir et (Benzerlik kurduğun nesneler ve dinamikler).\n- Modelin gerçek konseptle birebir uyuşan teknik yönlerini açıkla.\n- Yanıltıcı olabilecek noktaları (modelin gerçeği tam yansıtmadığı yerleri) belirt.",
+    "layer": "mechanism"
+  },
+  {
     "id": "mekanizma",
     "icon": "⚙️",
     "name": "Mekanizma",
@@ -63,6 +93,18 @@
       "ontoloji"
     ],
     "prompt": "MEKANİZMA\nSistemin çalışma prensibini dinamik bir makine gibi adım adım haritalandır:\n- Girdiler (Sistemin tetiklenmesi için ne girer, parametreler nelerdir?)\n- Süreç (İçeride gerçekleşen fiziksel, mantıksal veya algoritmik adımlar nelerdir? Adım adım sırayla açıkla.)\n- Çıktılar (Sürecin sonunda ne üretilir ve bu çıktı nereye gider?)\n- Geribildirim Döngüleri (Sistem kendi kendini nasıl ayarlar veya denetler?)\nFormat: Mümkünse süreci gösteren adım adım bir akış şeması veya tablo kullan.",
+    "layer": "mechanism"
+  },
+  {
+    "id": "diagram",
+    "icon": "📊",
+    "name": "Konu Grafiği (DAG)",
+    "desc": "Metinsel yapı haritası",
+    "explain": "Kavramlar arası yönlü ve ağsal ilişkileri ASCII veya metinsel diyagramlarla çizer.",
+    "requires": [
+      "ontoloji"
+    ],
+    "prompt": "KONU GRAFİĞİ (DAG)\nKonuyu oluşturan kavramların birbirini nasıl beslediğini gösteren bir Yönlü Bağımsız Grafik (DAG) tasarla.\n- Arayüzde düzgün görüntülenebilmesi için kod bloğu içinde temiz bir ASCII şeması (`[A] -> [B] -> [C]`) çiz.\n- Kritik bağımlılıkları (düğümler arasındaki akışı) ve tıkanma noktalarını (Bottlenecks) sembollerle işaretle.\n- Okların üzerine aktarılan temel ilişkiyi veya veriyi kısaca yaz.",
     "layer": "mechanism"
   },
   {
@@ -86,7 +128,31 @@
     "requires": [
       "mekanizma"
     ],
-    "prompt": "TERSİNE MÜHENDİSLİK\nSistemin ürettiği nihai çıktıdan (sonuçtan) yola çıkarak geriye doğru çalış:\n- Sonucu (çıktıyı) analiz et.\n- Bu sonucun oluşabilmesi için bir önceki adımda hangi durumun/verinin olması gerektiğini göster.\n- Sistemin girdilerine ulaşana kadar her adımı tersten çözümleyerek geriye doğru iz sür.",
+    "prompt": "TERSINE MÜHENDİSLİK\nSistemin ürettiği nihai çıktıdan (sonuçtan) yola çıkarak geriye doğru çalış:\n- Sonucu (çıktıyı) analiz et.\n- Bu sonucun oluşabilmesi için bir önceki adımda hangi durumun/verinin olması gerektiğini göster.\n- Sistemin girdilerine ulaşana kadar her adımı tersten çözümleyerek geriye doğru iz sür.",
+    "layer": "mechanism"
+  },
+  {
+    "id": "simulasyon",
+    "icon": "🎮",
+    "name": "Simülasyon Modu",
+    "desc": "Sistemin içinden anlatım",
+    "explain": "Sizi sistemin bir parçası gibi varsayarak süreci içten yaşatır.",
+    "requires": [
+      "mekanizma"
+    ],
+    "prompt": "SİMÜLASYON MODU\nBu sistemin içindeki mikro seviyeli bir bileşenmişim gibi (örn: bir transistör içindeki elektron, TCP paketindeki bir bayt veri, hücredeki bir protein) bana birinci tekil şahıs ağzından simülasyon yaşat.\n- Sistem çalışırken etrafımda neler oluyor, hangi fiziksel/mantıksal etkilere maruz kalıyorum?\n- Girdi geldiğinde hangi süreçten geçiyorum?\n- Çıktıya dönüştüğüm o son anı adım adım tasvir et.",
+    "layer": "mechanism"
+  },
+  {
+    "id": "deney",
+    "icon": "🧪",
+    "name": "Düşünce Deneyi",
+    "desc": "Zihinde çalıştırmak",
+    "explain": "Konunun prensiplerini uç durumlarda test eden zihinsel deneyler kurgular.",
+    "requires": [
+      "mekanizma"
+    ],
+    "prompt": "DÜŞÜNCE DENEYLERİ\nBu konunun sınırlarını ve temel prensiplerini zihnimde sınamamı sağlayacak 3 adet derin düşünce deneyi (thought experiment) kurgula.\nTalimatlar: Deneyleri anlat ama sonuçları veya cevapları doğrudan verme. Önce benim düşünmemi ve tahmin etmemi iste, cevapları bir sonraki adımda açıklamaya bırak.",
     "layer": "mechanism"
   },
   {
@@ -100,6 +166,16 @@
     "layer": "context"
   },
   {
+    "id": "kontrast",
+    "icon": "⚖️",
+    "name": "Kontrast Analizi",
+    "desc": "Benzer kavramlarla karşılaştır",
+    "explain": "En çok karıştırılan kavramlarla arasındaki ince çizgileri belirginleştirir.",
+    "requires": [],
+    "prompt": "KONTRAST ANALİZİ\nBu kavramı, onunla en çok karıştırılan ve aralarındaki çizgi ince olan 3 benzer kavramla karşılaştır.\nHer eşleşme için:\n- Ortak Noktalar (Neden karıştırılıyorlar?)\n- Kritik Farklar (Ayrıştıkları kesin teknik sınırlar nelerdir?)\n- Pratikte Ayırt Etme Kuralı (Kullanıcının hangisinin hangisi olduğunu anında anlamasını sağlayacak pratik bir zihinsel ipucu)",
+    "layer": "context"
+  },
+  {
     "id": "rakip",
     "icon": "⚔️",
     "name": "Rakip Teoriler",
@@ -110,13 +186,13 @@
     "layer": "context"
   },
   {
-    "id": "kontrast",
-    "icon": "⚖️",
-    "name": "Kontrast Analizi",
-    "desc": "Benzer kavramlarla karşılaştır",
-    "explain": "En çok karıştırılan kavramlarla arasındaki ince çizgileri belirginleştirir.",
+    "id": "karar",
+    "icon": "🌳",
+    "name": "Karar Ağacı",
+    "desc": "Ne zaman, hangisi seçilmeli?",
+    "explain": "Hangi durumlarda bu yöntemin veya teknolojinin seçilmesi gerektiğini gösteren bir akış algoritması sunar.",
     "requires": [],
-    "prompt": "KONTRAST ANALİZİ\nBu kavramı, onunla en çok karıştırılan ve aralarındaki çizgi ince olan 3 benzer kavramla karşılaştır.\nHer eşleşme için:\n- Ortak Noktalar (Neden karıştırılıyorlar?)\n- Kritik Farklar (Ayrıştıkları kesin teknik sınırlar nelerdir?)\n- Pratikte Ayırt Etme Kuralı (Kullanıcının hangisinin hangisi olduğunu anında anlamasını sağlayacak pratik bir zihinsel ipucu)",
+    "prompt": "KARAR AĞACI VE SEÇİM MATRİSİ\nBu konuyu veya teknolojiyi ne zaman, hangi koşullarda tercih etmemiz gerektiğini gösteren bir karar algoritması çıkar:\n- Karar Kriterleri (Hangi parametrelere bakarak karar verilmeli?)\n- 'Eğer ... ise bunu seç' şeklinde yapılandırılmış akış mantığı\n- Bu konunun tercih edilmemesi gereken durumlar (Anti-pattern durumları) ve alternatifleri",
     "layer": "context"
   },
   {
@@ -140,50 +216,16 @@
     "layer": "context"
   },
   {
-    "id": "mental",
-    "icon": "🧠",
-    "name": "Mental Model",
-    "desc": "Zihinsel görsel sahne",
-    "explain": "Konuyu zihninizde anında canlandırabileceğiniz bir senaryo haline getirir.",
-    "requires": [],
-    "prompt": "MENTAL MODEL\nBu konunun çalışma prensibini zihinde canlandırmayı kolaylaştıracak, akılda kalıcı ve sezgisel tek bir görsel sahne (mental model) oluştur.\n- Modeli tasvir et (Benzerlik kurduğun nesneler ve dinamikler).\n- Modelin gerçek konseptle birebir uyuşan teknik yönlerini açıkla.\n- Yanıltıcı olabilecek noktaları (modelin gerçeği tam yansıtmadığı yerleri) belirt.",
-    "layer": "visualization"
-  },
-  {
-    "id": "diagram",
-    "icon": "📊",
-    "name": "Konu Grafiği (DAG)",
-    "desc": "Metinsel yapı haritası",
-    "explain": "Kavramlar arası yönlü ve ağsal ilişkileri ASCII veya metinsel diyagramlarla çizer.",
+    "id": "gelecek",
+    "icon": "🔮",
+    "name": "Gelecek Projeksiyonu",
+    "desc": "Nereye evriliyor?",
+    "explain": "Bu konunun veya teknolojinin 5, 10 veya 50 yıl içinde nasıl şekilleneceğini tahmin eder.",
     "requires": [
-      "ontoloji"
+      "evrim"
     ],
-    "prompt": "KONU GRAFİĞİ (DAG)\nKonuyu oluşturan kavramların birbirini nasıl beslediğini gösteren bir Yönlü Bağımsız Grafik (DAG) tasarla.\n- Arayüzde düzgün görüntülenebilmesi için kod bloğu içinde temiz bir ASCII şeması (`[A] -> [B] -> [C]`) çiz.\n- Kritik bağımlılıkları (düğümler arasındaki akışı) ve tıkanma noktalarını (Bottlenecks) sembollerle işaretle.\n- Okların üzerine aktarılan temel ilişkiyi veya veriyi kısaca yaz.",
-    "layer": "visualization"
-  },
-  {
-    "id": "simulasyon",
-    "icon": "🎮",
-    "name": "Simülasyon Modu",
-    "desc": "Sistemin içinden anlatım",
-    "explain": "Sizi sistemin bir parçası gibi varsayarak süreci içten yaşatır.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "SİMÜLASYON MODU\nBu sistemin içindeki mikro seviyeli bir bileşenmişim gibi (örn: bir transistör içindeki elektron, TCP paketindeki bir bayt veri, hücredeki bir protein) bana birinci tekil şahıs ağzından simülasyon yaşat.\n- Sistem çalışırken etrafımda neler oluyor, hangi fiziksel/mantıksal etkilere maruz kalıyorum?\n- Girdi geldiğinde hangi süreçten geçiyorum?\n- Çıktıya dönüştüğüm o son anı adım adım tasvir et.",
-    "layer": "visualization"
-  },
-  {
-    "id": "deney",
-    "icon": "🧪",
-    "name": "Düşünce Deneyi",
-    "desc": "Zihinde çalıştırmak",
-    "explain": "Konunun prensiplerini uç durumlarda test eden zihinsel deneyler kurgular.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "DÜŞÜNCE DENEYLERİ\nBu konunun sınırlarını ve temel prensiplerini zihnimde sınamamı sağlayacak 3 adet derin düşünce deneyi (thought experiment) kurgula.\nTalimatlar: Deneyleri anlat ama sonuçları veya cevapları doğrudan verme. Önce benim düşünmemi ve tahmin etmemi iste, cevapları bir sonraki adımda açıklamaya bırak.",
-    "layer": "visualization"
+    "prompt": "GELECEK PROJEKSİYONU\nBu kavramın/teknolojinin önümüzdeki yıllarda nasıl evrileceğini ve hangi paradigma değişimlerini tetikleyeceğini öngör:\n- 5 Yıl Sonra: Yakın gelecekte hangi güncellemeler ve entegrasyonlar bekleniyor?\n- 20 Yıl Sonra: Uzun vadede bu kavram tamamen neye dönüşebilir veya yerini ne alabilir?\n- Çarpan Etkisi: Bu gelişimin diğer yan sektörlerde ve teknolojilerde tetikleyeceği devrimsel etkiler nelerdir?",
+    "layer": "context"
   },
   {
     "id": "yanilgilar",
@@ -228,6 +270,18 @@
     "layer": "boundaries"
   },
   {
+    "id": "senaryo",
+    "icon": "🔥",
+    "name": "Kriz Senaryoları",
+    "desc": "Hata veya felaket anları",
+    "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
+    "requires": [
+      "kirilma"
+    ],
+    "prompt": "KRİZ VE ÇÖKÜŞ SENARYOLARI\nBu sistemin en uç koşullarda karşılaşabileceği felaket senaryolarını ve çöküş mimarisini analiz et:\n- Tetikleyici Krizler (Hangi dış etkiler veya iç arızalar zincirleme çöküşü başlatır?)\n- Çöküş Mekanizması (Sistem adım adım nasıl devre dışı kalır, domino etkisi nasıl yayılır?)\n- Kurtarma Protokolü (Enkazdan kurtulmak veya sistemi kararlı hale geri döndürmek için uygulanacak acil durum mitigation adımları nelerdir?)",
+    "layer": "boundaries"
+  },
+  {
     "id": "olcek",
     "icon": "📈",
     "name": "Ölçek Analizi",
@@ -262,6 +316,16 @@
     "layer": "application"
   },
   {
+    "id": "kodlama",
+    "icon": "💻",
+    "name": "Kodlama & Formül",
+    "desc": "Algoritma veya matematiksel model",
+    "explain": "Kavramın arkasındaki matematiksel formülleri veya en sade kod/algoritma prototipini sunar.",
+    "requires": [],
+    "prompt": "KODLAMA VE MATEMATİKSEL FORMÜL\nBu kavramın arkasındaki temel işleyiş mantığını en sade ve anlaşılır şekilde formülize et veya kodla:\n- Eğer teknik/matematiksel bir konu ise: Temel formülleri ve değişkenlerin anlamlarını açıkla.\n- Eğer yazılım/algoritma ise: Kavramı simüle eden en sade pseudo-kod (veya Python/JS prototip kodu) örneği yaz.\n- Kod veya formül içindeki her kritik adımı yorum satırlarıyla detaylandır.",
+    "layer": "application"
+  },
+  {
     "id": "uzman",
     "icon": "🧠",
     "name": "Uzman Gibi Düşün",
@@ -269,26 +333,6 @@
     "explain": "Acemilerin gözden kaçırdığı detayları uzmanların anında nasıl fark ettiğini açıklar.",
     "requires": [],
     "prompt": "UZMAN GİBİ DÜŞÜN\nBu konuyu yıllardır uygulayan kıdemli bir uzmanın zihinsel filtrelerini ve yaklaşımlarını analiz et:\n- Acemilerin düştüğü ama uzmanların anında fark edip kaçındığı 3 gizli hata nedir?\n- Bir uzman sisteme baktığında ilk hangi metrikleri veya davranışları kontrol eder?\n- Bir uzmanın bu konuda problem çözerken kullandığı sezgisel yaklaşımlar (heuristics) nelerdir?",
-    "layer": "application"
-  },
-  {
-    "id": "pareto",
-    "icon": "📐",
-    "name": "80/20 Analizi",
-    "desc": "%20 efor, %80 anlayış",
-    "explain": "Tüm detaya boğulmak yerine, işin özünü oluşturan kritik %20'lik dilimi filtreler.",
-    "requires": [],
-    "prompt": "80/20 ANALİZİ (Pareto İlkesi)\nBu konunun tüm detaylarında kaybolmak yerine, konuyu anlamanın veya uygulamanın %80'ini sağlayacak en kritik %20'lik dilimi (özü) filtrele.\n- Bu hayati %20'lik kavramları ve kuralları öncelik sırasıyla listele.\n- Her birinin neden çarpan etkisi yarattığını açıkla.\n- Geri kalan %80'lik detayların hangi durumlarda göz ardı edilebileceğini belirt.",
-    "layer": "application"
-  },
-  {
-    "id": "kaynak",
-    "icon": "📚",
-    "name": "Kaynak Haritası",
-    "desc": "Sonraki adımlar",
-    "explain": "Öğrenmeye devam etmek için kalibre edilmiş kaynaklar (kitap, video vb.) önerir.",
-    "requires": [],
-    "prompt": "KAYNAK HARİTASI\nBu konuyu kendi başıma çalışmaya devam edebilmem için en kaliteli, otorite kabul edilen ve kalibre edilmiş kaynakları öner.\nFormat: Önerileri şu kategorilerde listele:\n- Temel Kaynaklar (Başlangıç seviyesi için en iyi kitaplar, makaleler veya dökümanlar)\n- İleri Düzey Kaynaklar (Akademik makaleler, uzmanlık kitapları veya açık kaynaklı projeler)\n- Pratik Yapma Araçları (Öğrenileni test edecek kütüphaneler, simülatörler veya pratik platformları)",
     "layer": "application"
   },
   {
@@ -302,7 +346,7 @@
       "mekanizma"
     ],
     "prompt": "İDRAK TESTİ (Quiz)\nKonuyu ezberleyip ezberlemediğimi değil, derinlemesine idrak edip etmediğimi ölçecek bir quiz hazırla.\n- 3 adet Kavramsal Anlayış Sorusu (Kavramlar arasındaki bağlantıları sorgulayan)\n- 2 adet Teknik Senaryo Sorusu (Kavramı pratik veya sorunlu bir mühendislik durumuna uygulayan)\n- 1 adet Transfer Sorusu (Mantığı tamamen farklı bir disipline uyarlamamı isteyen)\nTalimat: Soruları sor ama cevapları hemen verme. Önce benim cevaplarımı bekle.",
-    "layer": "evaluation"
+    "layer": "application"
   },
   {
     "id": "transfer",
@@ -314,38 +358,26 @@
       "mekanizma"
     ],
     "prompt": "TRANSFER SORULARI\nBu kavramın ana işleyiş mantığını, onunla tamamen alakasız görünen 3 farklı disipline uyarlayan derin düşünce ve uygulama soruları sor.\nÖrnek format: 'Bu sistemin X kuralını alıp Y alanındaki Z problemine uygularsak nasıl bir mekanizma ortaya çıkar?'\nBu sorular zihnimde yeni nöral bağlantılar kurmalı ve kavramı soyutlaştırıp genelleştirmemi sağlamalıdır.",
-    "layer": "evaluation"
-  },
-  {
-    "id": "gelecek",
-    "icon": "🔮",
-    "name": "Gelecek Projeksiyonu",
-    "desc": "Nereye evriliyor?",
-    "explain": "Bu konunun veya teknolojinin 5, 10 veya 50 yıl içinde nasıl şekilleneceğini tahmin eder.",
-    "requires": [
-      "evrim"
-    ],
-    "prompt": "GELECEK PROJEKSİYONU\nBu kavramın/teknolojinin önümüzdeki yıllarda nasıl evrileceğini ve hangi paradigma değişimlerini tetikleyeceğini öngör:\n- 5 Yıl Sonra: Yakın gelecekte hangi güncellemeler ve entegrasyonlar bekleniyor?\n- 20 Yıl Sonra: Uzun vadede bu kavram tamamen neye dönüşebilir veya yerini ne alabilir?\n- Çarpan Etkisi: Bu gelişimin diğer yan sektörlerde ve teknolojilerde tetikleyeceği devrimsel etkiler nelerdir?",
-    "layer": "projection"
+    "layer": "application"
   },
   {
     "id": "meta",
+    "icon": "🧠",
     "name": "Meta-Öğrenme",
     "desc": "Nasıl daha iyi öğrenilir?",
     "explain": "Bu konuyu veya yeteneği kendi başınıza en verimli şekilde nasıl geliştireceğinizi ve çalışacağınızı listeler.",
     "requires": [],
     "prompt": "META-ÖĞRENME STRATEJİSİ\nBu konuyu en hızlı, en kalıcı ve zihinsel dirençle karşılaşmadan öğrenmemi sağlayacak bilişsel stratejileri çıkar:\n- Hızlı Ustalaşma Yolu (En verimli öğrenme roadmap'i ve pratik döngüleri)\n- Zihinsel Tuzaklar (Öğrenirken en çok nerede vakit kaybedilir ve bundan nasıl kaçınılır?)\n- Feedback Döngüsü (Kendi ilerlememi ve hatalarımı en hızlı nasıl test edip düzeltebilirim?)",
-    "layer": "meta"
+    "layer": "application"
   },
   {
-    "id": "senaryo",
-    "name": "Kriz Senaryoları",
-    "desc": "Hata veya felaket anları",
-    "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
-    "requires": [
-      "kirilma"
-    ],
-    "prompt": "KRİZ VE ÇÖKÜŞ SENARYOLARI\nBu sistemin en uç koşullarda karşılaşabileceği felaket senaryolarını ve çöküş mimarisini analiz et:\n- Tetikleyici Krizler (Hangi dış etkiler veya iç arızalar zincirleme çöküşü başlatır?)\n- Çöküş Mekanizması (Sistem adım adım nasıl devre dışı kalır, domino etkisi nasıl yayılır?)\n- Kurtarma Protokolü (Enkazdan kurtulmak veya sistemi kararlı hale geri döndürmek için uygulanacak acil durum mitigation adımları nelerdir?)",
-    "layer": "advanced"
+    "id": "kaynak",
+    "icon": "📚",
+    "name": "Kaynak Haritası",
+    "desc": "Sonraki adımlar",
+    "explain": "Öğrenmeye devam etmek için kalibre edilmiş kaynaklar (kitap, video vb.) önerir.",
+    "requires": [],
+    "prompt": "KAYNAK HARİTASI\nBu konuyu kendi başıma çalışmaya devam edebilmem için en kaliteli, otorite kabul edilen ve kalibre edilmiş kaynakları öner.\nFormat: Önerileri şu kategorilerde listele:\n- Temel Kaynaklar (Başlangıç seviyesi için en iyi kitaplar, makaleler veya dökümanlar)\n- İleri Düzey Kaynaklar (Akademik makaleler, uzmanlık kitapları veya açık kaynaklı projeler)\n- Pratik Yapma Araçları (Öğrenileni test edecek kütüphaneler, simülatörler veya pratik platformları)",
+    "layer": "application"
   }
 ]
