@@ -1,5 +1,15 @@
 [
   {
+    "id": "eli5",
+    "icon": "👶",
+    "name": "Explain Like I'm 5 (ELI5)",
+    "desc": "Simplify concepts for a child",
+    "explain": "Explains complex concepts using simple analogies and everyday language, as if explaining to a 5-year-old.",
+    "requires": [],
+    "prompt": "EXPLAIN LIKE I'M 5 (ELI5)\nExplain this topic in an extremely simple, clear, and jargon-free manner as if explaining to a 5-year-old child. Use very simple, memorable analogies from everyday life. Summarize the concept in a single sentence at the end.",
+    "layer": "foundation"
+  },
+  {
     "id": "kalibrasyon",
     "icon": "🎯",
     "name": "Level Calibration",
@@ -32,6 +42,16 @@
     "layer": "foundation"
   },
   {
+    "id": "pareto",
+    "icon": "📐",
+    "name": "80/20 Analysis",
+    "desc": "20% effort, 80% understanding",
+    "explain": "Instead of getting lost in details, filter the critical 20% core that provides 80% of the comprehension or utility of this topic.",
+    "requires": [],
+    "prompt": "80/20 ANALYSIS (Pareto Principle)\nInstead of getting lost in details, filter the critical 20% core that provides 80% of the comprehension or utility of this topic.\n- List these vital 20% concepts and rules in order of priority.\n- Explain why each has a multiplier effect.\n- Specify under what conditions the remaining 80% of details can be safely ignored.",
+    "layer": "foundation"
+  },
+  {
     "id": "ontoloji",
     "icon": "🧬",
     "name": "Ontology (Principles)",
@@ -54,6 +74,16 @@
     "layer": "foundation"
   },
   {
+    "id": "mental",
+    "icon": "🧠",
+    "name": "Mental Model",
+    "desc": "Mental visual scene",
+    "explain": "Turns the concept into an intuitive visual scenario for easy recall.",
+    "requires": [],
+    "prompt": "MENTAL MODEL\nCreate a single, memorable, and intuitive visual scene (mental model) that makes the working principle of this topic easy to visualize.\n- Describe the model (the components and dynamics you associate with it).\n- Explain the technical aspects where the model aligns perfectly with the actual concept.\n- Highlight potential pitfalls (where the model simplifies or diverges from reality).",
+    "layer": "mechanism"
+  },
+  {
     "id": "mekanizma",
     "icon": "⚙️",
     "name": "Mechanism",
@@ -63,6 +93,18 @@
       "ontoloji"
     ],
     "prompt": "MECHANISM\nMap the working principle of the system step-by-step like a dynamic machine:\n- Inputs (What triggers the system? What are the starting parameters?)\n- Process (What are the physical, logical, or algorithmic steps inside? Explain in sequence.)\n- Outputs (What is produced at the end of the process, and where does it go?)\n- Feedback Loops (How does the system self-regulate or check its state?)\nFormat: Use a step-by-step flowchart or table to visualize the process.",
+    "layer": "mechanism"
+  },
+  {
+    "id": "diagram",
+    "icon": "📊",
+    "name": "Concept Graph (DAG)",
+    "desc": "Textual structure map",
+    "explain": "Draws directed relationships between sub-concepts using ASCII or text diagrams.",
+    "requires": [
+      "ontoloji"
+    ],
+    "prompt": "CONCEPT GRAPH (DAG)\nDesign a Directed Acyclic Graph (DAG) showing how the sub-concepts of this topic feed into and depend on each other.\n- Draw a clean ASCII diagram (`[A] -> [B] -> [C]`) inside a code block for proper rendering.\n- Mark critical dependencies and bottlenecks with symbols.\n- Briefly write the relationship or data transferred on the arrows.",
     "layer": "mechanism"
   },
   {
@@ -90,6 +132,30 @@
     "layer": "mechanism"
   },
   {
+    "id": "simulasyon",
+    "icon": "🎮",
+    "name": "Simulation Mode",
+    "desc": "Narrate from within",
+    "explain": "Simulates the process from the perspective of an internal component.",
+    "requires": [
+      "mekanizma"
+    ],
+    "prompt": "SIMULATION MODE\nNarrate a first-person simulation as if I were a micro-level component inside this system (e.g., an electron in a transistor, a byte in a TCP packet, a protein in a cell).\n- What happens around me as the system runs? What physical or logical forces act on me?\n- What process do I undergo when the input arrives?\n- Describe step-by-step the final moment as I am transformed into the output.",
+    "layer": "mechanism"
+  },
+  {
+    "id": "deney",
+    "icon": "🧪",
+    "name": "Thought Experiment",
+    "desc": "Run in your mind",
+    "explain": "Sets up thought experiments to test principles in boundary conditions.",
+    "requires": [
+      "mekanizma"
+    ],
+    "prompt": "THOUGHT EXPERIMENTS\nConstruct 3 deep thought experiments to test the boundaries and core principles of this topic in my mind.\nInstructions: Describe the experiments but do not provide the results or answers directly. Ask me to think and predict first, leaving the answers for a subsequent explanation.",
+    "layer": "mechanism"
+  },
+  {
     "id": "evrim",
     "icon": "📜",
     "name": "Historical Evolution",
@@ -97,6 +163,16 @@
     "explain": "Explains what problems the concept was developed to solve historically.",
     "requires": [],
     "prompt": "HISTORICAL EVOLUTION\nAnalyze the evolution of this concept/technology over time in a chronological, problem-oriented manner:\n- What inadequate solution did people rely on before this concept was born?\n- What technological or scientific breakthrough triggered its birth?\n- What major versions or paradigm shifts did it undergo historically?\n- What is its current state-of-the-art status, and where is it heading next?",
+    "layer": "context"
+  },
+  {
+    "id": "kontrast",
+    "icon": "⚖️",
+    "name": "Contrast Analysis",
+    "desc": "Compare with similar concepts",
+    "explain": "Clarifies boundaries between this concept and easily confused alternatives.",
+    "requires": [],
+    "prompt": "CONTRAST ANALYSIS\nCompare this concept with 3 similar concepts that are most frequently confused with it due to subtle distinctions.\nFor each pairing, outline:\n- Shared Grounds (Why are they confused?)\n- Critical Differences (What are the exact technical boundaries where they diverge?)\n- Rule of Thumb (A practical mental shortcut to immediately tell them apart)",
     "layer": "context"
   },
   {
@@ -110,13 +186,13 @@
     "layer": "context"
   },
   {
-    "id": "kontrast",
-    "icon": "⚖️",
-    "name": "Contrast Analysis",
-    "desc": "Compare with similar concepts",
-    "explain": "Clarifies boundaries between this concept and easily confused alternatives.",
+    "id": "karar",
+    "icon": "🌳",
+    "name": "Decision Tree",
+    "desc": "When to choose this concept?",
+    "explain": "Provides a logical decision algorithm or choice matrix indicating when to select this method or technology.",
     "requires": [],
-    "prompt": "CONTRAST ANALYSIS\nCompare this concept with 3 similar concepts that are most frequently confused with it due to subtle distinctions.\nFor each pairing, outline:\n- Shared Grounds (Why are they confused?)\n- Critical Differences (What are the exact technical boundaries where they diverge?)\n- Rule of Thumb (A practical mental shortcut to immediately tell them apart)",
+    "prompt": "DECISION TREE AND SELECTION MATRIX\nConstruct a decision algorithm outlining when and under what conditions to prefer this topic or technology:\n- Decision Criteria (What parameters to look for when deciding?)\n- Flow logic structured as 'If ... then select this'\n- Scenarios where this concept should NOT be chosen (Anti-patterns) and their alternatives",
     "layer": "context"
   },
   {
@@ -140,50 +216,12 @@
     "layer": "context"
   },
   {
-    "id": "mental",
-    "icon": "🧠",
-    "name": "Mental Model",
-    "desc": "Mental visual scene",
-    "explain": "Turns the concept into an intuitive visual scenario for easy recall.",
-    "requires": [],
-    "prompt": "MENTAL MODEL\nCreate a single, memorable, and intuitive visual scene (mental model) that makes the working principle of this topic easy to visualize.\n- Describe the model (the components and dynamics you associate with it).\n- Explain the technical aspects where the model aligns perfectly with the actual concept.\n- Highlight potential pitfalls (where the model simplifies or diverges from reality).",
-    "layer": "visualization"
-  },
-  {
-    "id": "diagram",
-    "icon": "📊",
-    "name": "Concept Graph (DAG)",
-    "desc": "Textual structure map",
-    "explain": "Draws directed relationships between sub-concepts using ASCII or text diagrams.",
-    "requires": [
-      "ontoloji"
-    ],
-    "prompt": "CONCEPT GRAPH (DAG)\nDesign a Directed Acyclic Graph (DAG) showing how the sub-concepts of this topic feed into and depend on each other.\n- Draw a clean ASCII diagram (`[A] -> [B] -> [C]`) inside a code block for proper rendering.\n- Mark critical dependencies and bottlenecks with symbols.\n- Briefly write the relationship or data transferred on the arrows.",
-    "layer": "visualization"
-  },
-  {
-    "id": "simulasyon",
-    "icon": "🎮",
-    "name": "Simulation Mode",
-    "desc": "Narrate from within",
-    "explain": "Simulates the process from the perspective of an internal component.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "SIMULATION MODE\nNarrate a first-person simulation as if I were a micro-level component inside this system (e.g., an electron in a transistor, a byte in a TCP packet, a protein in a cell).\n- What happens around me as the system runs? What physical or logical forces act on me?\n- What process do I undergo when the input arrives?\n- Describe step-by-step the final moment as I am transformed into the output.",
-    "layer": "visualization"
-  },
-  {
-    "id": "deney",
-    "icon": "🧪",
-    "name": "Thought Experiment",
-    "desc": "Run in your mind",
-    "explain": "Sets up thought experiments to test principles in boundary conditions.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "THOUGHT EXPERIMENTS\nConstruct 3 deep thought experiments to test the boundaries and core principles of this topic in my mind.\nInstructions: Describe the experiments but do not provide the results or answers directly. Ask me to think and predict first, leaving the answers for a subsequent explanation.",
-    "layer": "visualization"
+    "id": "gelecek",
+    "icon": "🔮",
+    "name": "Future Projections",
+    "desc": "Where is it heading?",
+    "explain": "Project how this concept/technology will evolve in the coming years and what paradigm shifts it will trigger:\n- 5 Years Out: What updates and integrations are expected in the near future?\n- 20 Years Out: Long term, what will this concept transform into, or what will replace it?\n- Multiplier Effect: What revolutionary impacts will this evolution trigger in adjacent industries?",
+    "layer": "context"
   },
   {
     "id": "yanilgilar",
@@ -228,15 +266,19 @@
     "layer": "boundaries"
   },
   {
+    "id": "senaryo",
+    "icon": "🔥",
+    "name": "Crisis Scenarios",
+    "desc": "Failure or disaster moments",
+    "explain": "Analyze the disaster scenarios and collapse architectures this system might encounter under extreme conditions:\n- Triggering Crises (What external forces or internal failures initiate a cascading collapse?)\n- Collapse Mechanism (How does the system fail step-by-step? How does the domino effect propagate?)\n- Recovery Protocol (What emergency mitigation steps should be applied to recover from the failure or restore stability?)",
+    "layer": "boundaries"
+  },
+  {
     "id": "olcek",
     "icon": "📈",
     "name": "Scale Analysis",
     "desc": "What happens when scaled?",
-    "explain": "Sistem 10x küçüldüğünde veya 100x büyüdüğünde kuralların nasıl değiştiğini analiz eder.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "SCALE ANALYSIS\nAnalyze how the rules and behaviors change when the system's dimensions scale radically:\n- Micro Scale: If the system is shrunk 10x or load decreases 10x, what new constraints emerge?\n- Macro Scale: If the system scales up 100x or load increases 100x, what bottlenecks occur, and what architectural changes become mandatory?",
+    "explain": "Analyze how the rules and behaviors change when the system's dimensions scale radically:\n- Micro Scale: If the system is shrunk 10x or load decreases 10x, what new constraints emerge?\n- Macro Scale: If the system scales up 100x or load increases 100x, what bottlenecks occur, and what architectural changes become mandatory?",
     "layer": "boundaries"
   },
   {
@@ -244,11 +286,7 @@
     "icon": "🔥",
     "name": "Contradiction Mode",
     "desc": "Find the paradoxes",
-    "explain": "Teorinin kendi içindeki tutarsızlıkları bularak araştırma seviyesine çıkmanızı sağlar.",
-    "requires": [
-      "varsayimlar"
-    ],
-    "prompt": "CONTRADICTIONS AND PARADOXES\nAnalyze logical dilemmas, unsolved paradoxes, or controversial aspects within the theoretical framework of this topic.\n- Explain at least 2 critical contradictions or paradoxes.\n- Show what causes these contradictions (e.g., inadequacy of boundary conditions, flawed assumptions).\n- Elevate the topic from superficial concepts into advanced scientific/technical inquiry.",
+    "explain": "Analyze logical dilemmas, unsolved paradoxes, or controversial aspects within the theoretical framework of this topic.\n- Explain at least 2 critical contradictions or paradoxes.\n- Show what causes these contradictions (e.g., inadequacy of boundary conditions, flawed assumptions).\n- Elevate the topic from superficial concepts into advanced scientific/technical inquiry.",
     "layer": "boundaries"
   },
   {
@@ -262,6 +300,16 @@
     "layer": "application"
   },
   {
+    "id": "kodlama",
+    "icon": "💻",
+    "name": "Coding & Formula",
+    "desc": "Algorithm or mathematical model",
+    "explain": "Provides the mathematical equations or a simplified code/algorithmic prototype behind the concept.",
+    "requires": [],
+    "prompt": "CODING AND MATHEMATICAL FORMULA\nFormulate or code the core working logic behind this concept in the simplest and most readable way:\n- If it is a technical/mathematical topic: Explain the fundamental equations and variables.\n- If it is software/algorithmic: Write a simplified pseudo-code (or Python/JS prototype) simulating the concept.\n- Annotate each critical step inside the code or formula with comments.",
+    "layer": "application"
+  },
+  {
     "id": "uzman",
     "icon": "🧠",
     "name": "Think Like an Expert",
@@ -272,13 +320,27 @@
     "layer": "application"
   },
   {
-    "id": "pareto",
-    "icon": "📐",
-    "name": "80/20 Analysis",
-    "desc": "20% effort, 80% understanding",
-    "explain": "Tüm detaya boğulmak yerine, işin özünü oluşturan kritik %20'lik dilimi filtreler.",
-    "requires": [],
-    "prompt": "80/20 ANALYSIS (Pareto Principle)\nInstead of getting lost in details, filter the critical 20% core that provides 80% of the comprehension or utility of this topic.\n- List these vital 20% concepts and rules in order of priority.\n- Explain why each has a multiplier effect.\n- Specify under what conditions the remaining 80% of details can be safely ignored.",
+    "id": "quiz",
+    "icon": "📝",
+    "name": "Comprehension Quiz",
+    "desc": "Test knowledge & application",
+    "explain": "Prepare a quiz that measures deep conceptual comprehension rather than rote memory.\n- 3 Conceptual Understanding Questions (Testing connections between sub-concepts)\n- 2 Technical Scenario Questions (Applying the concept to practical or broken engineering situations)\n- 1 Transfer Question (Requiring me to map the logic to a completely different discipline)\nInstruction: Ask the questions but do not provide the answers immediately. Await my response first.",
+    "layer": "application"
+  },
+  {
+    "id": "transfer",
+    "icon": "🔄",
+    "name": "Transfer Questions",
+    "desc": "Apply to other fields",
+    "explain": "Ask deep thought and application questions that map the core logic of this concept onto 3 completely unrelated disciplines.\nExample format: 'If we take the rule X of this system and apply it to problem Z in field Y, what mechanism emerges?'\nThese questions should build new neural connections, forcing me to abstract and generalize the concept.",
+    "layer": "application"
+  },
+  {
+    "id": "meta",
+    "icon": "🧠",
+    "name": "Meta-Learning",
+    "desc": "How to study better",
+    "explain": "Extract cognitive strategies to learn this topic fastest, with maximum retention, and minimum friction:\n- Fast Mastery Path (The most efficient learning roadmap and feedback/practice loops)\n- Cognitive Traps (Where do learners waste the most time, and how do you avoid it?)\n- Feedback Loop (How can I test and correct my own progress and misunderstandings fastest?)",
     "layer": "application"
   },
   {
@@ -286,66 +348,7 @@
     "icon": "📚",
     "name": "Resource Map",
     "desc": "Next steps",
-    "explain": "Öğrenmeye devam etmek için kalibre edilmiş kaynaklar (kitap, video vb.) önerir.",
-    "requires": [],
-    "prompt": "RESOURCE MAP\nRecommend the highest-quality, authoritative, and calibrated resources to continue studying this topic independently.\nFormat: List recommendations in these categories:\n- Foundational Resources (Best books, articles, or documentation for beginners)\n- Advanced Resources (Academic papers, expert books, or open-source repositories)\n- Practice Tools (Libraries, simulators, or sandboxes to test what you learn)",
+    "explain": "Recommend the highest-quality, authoritative, and calibrated resources to continue studying this topic independently.\nFormat: List recommendations in these categories:\n- Foundational Resources (Best books, articles, or documentation for beginners)\n- Advanced Resources (Academic papers, expert books, or open-source repositories)\n- Practice Tools (Libraries, simulators, or sandboxes to test what you learn)",
     "layer": "application"
-  },
-  {
-    "id": "quiz",
-    "icon": "📝",
-    "name": "Comprehension Quiz",
-    "desc": "Test knowledge & application",
-    "explain": "Gerçekten anladığınızı teyit etmek için hem bilgi ölçen hem de uygulatan sorular sorar.",
-    "requires": [
-      "ontoloji",
-      "mekanizma"
-    ],
-    "prompt": "COMPREHENSION QUIZ\nPrepare a quiz that measures deep conceptual comprehension rather than rote memory.\n- 3 Conceptual Understanding Questions (Testing connections between sub-concepts)\n- 2 Technical Scenario Questions (Applying the concept to practical or broken engineering situations)\n- 1 Transfer Question (Requiring me to map the logic to a completely different discipline)\nInstruction: Ask the questions but do not provide the answers immediately. Await my response first.",
-    "layer": "evaluation"
-  },
-  {
-    "id": "transfer",
-    "icon": "🔄",
-    "name": "Transfer Questions",
-    "desc": "Apply to other fields",
-    "explain": "Öğrentiğiniz yapıyı, birbirinden alakasız görünen bambaşka bir disipline uyarlamanızı ister.",
-    "requires": [
-      "mekanizma"
-    ],
-    "prompt": "TRANSFER QUESTIONS\nAsk deep thought and application questions that map the core logic of this concept onto 3 completely unrelated disciplines.\nExample format: 'If we take the rule X of this system and apply it to problem Z in field Y, what mechanism emerges?'\nThese questions should build new neural connections, forcing me to abstract and generalize the concept.",
-    "layer": "evaluation"
-  },
-  {
-    "id": "gelecek",
-    "icon": "🔮",
-    "name": "Future Projections",
-    "desc": "Where is it heading?",
-    "explain": "Bu konunun veya teknolojinin 5, 10 veya 50 yıl içinde nasıl şekilleneceğini tahmin eder.",
-    "requires": [
-      "evrim"
-    ],
-    "prompt": "FUTURE PROJECTIONS\nProject how this concept/technology will evolve in the coming years and what paradigm shifts it will trigger:\n- 5 Years Out: What updates and integrations are expected in the near future?\n- 20 Years Out: Long term, what will this concept transform into, or what will replace it?\n- Multiplier Effect: What revolutionary impacts will this evolution trigger in adjacent industries?",
-    "layer": "projection"
-  },
-  {
-    "id": "meta",
-    "name": "Meta-Learning",
-    "desc": "How to study better",
-    "explain": "Bu konuyu veya yeteneği kendi başınıza en verimli şekilde nasıl geliştireceğinizi ve çalışacağınızı listeler.",
-    "requires": [],
-    "prompt": "META-LEARNING STRATEGY\nExtract cognitive strategies to learn this topic fastest, with maximum retention, and minimum friction:\n- Fast Mastery Path (The most efficient learning roadmap and feedback/practice loops)\n- Cognitive Traps (Where do learners waste the most time, and how do you avoid it?)\n- Feedback Loop (How can I test and correct my own progress and misunderstandings fastest?)",
-    "layer": "meta"
-  },
-  {
-    "id": "senaryo",
-    "name": "Crisis Scenarios",
-    "desc": "Failure or disaster moments",
-    "explain": "Sistem veya yapı çöktüğünde/bozulduğunda nelerin ters gidebileceğini ve nasıl kurtarılacağını inceler.",
-    "requires": [
-      "kirilma"
-    ],
-    "prompt": "CRISIS & COLLAPSE SCENARIOS\nAnalyze the disaster scenarios and collapse architectures this system might encounter under extreme conditions:\n- Triggering Crises (What external forces or internal failures initiate a cascading collapse?)\n- Collapse Mechanism (How does the system fail step-by-step? How does the domino effect propagate?)\n- Recovery Protocol (What emergency mitigation steps should be applied to recover from the failure or restore stability?)",
-    "layer": "advanced"
   }
 ]

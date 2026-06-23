@@ -39,6 +39,34 @@ export const i18n = {
  },
  monologLabel: 'İç Ses (Reasoning) Modu',
  autoResolveLabel: 'Otomatik Bağımlılık Çözme',
+ monologDesc: 'Yapay zekanın arka plandaki düşünme adımlarını (reasoning) tetikleyerek daha mantıklı ve tutarlı yanıtlar üretmesini sağlar.',
+ autoResolveDesc: 'Seçtiğiniz bir modülün çalışması için gereken diğer modülleri otomatik olarak belirler ve listeye ekler.',
+  levelDescs: {
+    otomatik: 'Otomatik: AI seviyeyi konunun karmaşıklığına göre kendisi ayarlar.',
+    acemi: 'Acemi: Teknik terim kullanmadan, en basit benzetmelerle anlatır.',
+    orta: 'Orta: Temel kavramları ve yaygın pratik kullanımları içerir.',
+    ileri: 'İleri: Derinlemesine teknik ayrıntılara, matematiksel/yapısal modellere yer verir.',
+    uzman: 'Uzman: Sektörel standartlarda, ileri düzey akademik ve teknik terminoloji kullanır.'
+  },
+  modeDescs: {
+    karma: 'Karma: Konunun ihtiyacına göre pedagojik yöntemleri harmanlar.',
+    feynman: 'Feynman: Karmaşık konuları 5 yaşındaki bir çocuğa anlatır gibi basitleştirir.',
+    sistem: 'Sistem Analizi: Girdiler, çıktılar, geri beslemeler ve alt sistemleri inceler.',
+    sokratik: 'Sokratik: Sorular ve sorgulamalar üzerinden kritik düşünmeyi teşvik eder.',
+    ilkeler: 'Birinci İlkeler: Varsayımları yıkarak konuyu en temel kanıtlanmış gerçeklerine indirger.'
+  },
+  depthDescs: {
+    temel: 'Temel: Temel kavramları ve genel resmi hızlıca özetler.',
+    orta: 'Orta: Standart ana hatları ve mekanizmaları açıklar.',
+    derin: 'Derin: Alt bileşenleri, örnekleri ve detaylı işleyişi ele alır.',
+    kapsamli: 'Kapsamlı: Uç durumları, sınırları, tarihçeyi ve tüm detayları kapsar.'
+  },
+  formatDescs: {
+    markdown: 'Markdown: Başlıklar, listeler ve kod bloklarıyla temiz bir hiyerarşi sunar.',
+    tablo: 'Tablo Ağırlıklı: Karşılaştırmalı matrisler ve verileri tablolar halinde düzenler.',
+    ders: 'Ders Notu: Müfredat formatında adım adım akademik bir akış sunar.',
+    quiz: 'Quiz Destekli: Konu anlatımının sonuna pekiştirici soru ve cevaplar ekler.'
+  },
  presetsTitle: 'Hazır Şablonlar',
  paramsTitle: 'Parametreler',
  presets: {
@@ -54,6 +82,13 @@ export const i18n = {
  yaratici: 'Yaratıcı Sentez'
  },
  modulesTitle: 'Öğrenme Modülleri',
+ categories: {
+    foundation: 'Temeller & Giriş',
+    mechanism: 'İşleyiş & Simülasyon',
+    context: 'Bağlantılar',
+    boundaries: 'Sınırlar & Riskler',
+    application: 'Pratik & Gelişim'
+  },
  selectAll: 'Tümünü Seç',
  clearAll: 'Temizle',
  reqsLabel: 'Gereksinimler',
@@ -157,6 +192,34 @@ export const i18n = {
  },
  monologLabel: 'Internal Monologue (Reasoning)',
  autoResolveLabel: 'Auto-Resolve Dependencies',
+ monologDesc: "Triggers the AI's background thinking/reasoning steps, enabling it to produce more logical and consistent responses.",
+ autoResolveDesc: "Automatically detects and activates other modules required by your selected modules.",
+  levelDescs: {
+    otomatik: 'Auto: AI determines the explanation level based on topic complexity.',
+    acemi: 'Novice: Explains simply using basic analogies, avoiding technical jargon.',
+    orta: 'Intermediate: Covers main concepts and common practical applications.',
+    ileri: 'Advanced: Introduces technical details, mathematical/structural models.',
+    uzman: 'Expert: Utilizes high-level academic and professional industry terminology.'
+  },
+  modeDescs: {
+    karma: 'Mixed: Blends pedagogical methods adaptively based on topic needs.',
+    feynman: 'Feynman: Explains complex ideas simply as if teaching a 5-year-old child.',
+    sistem: 'System Analysis: Examines inputs, outputs, feedbacks, and subsystems.',
+    sokratik: 'Socratic: Prompts critical thinking through guiding questions.',
+    ilkeler: 'First Principles: Deconstructs topic down to its most fundamental truths.'
+  },
+  depthDescs: {
+    temel: 'Basic: Summarizes core concepts and the high-level big picture.',
+    orta: 'Moderate: Details standard outlines and mechanisms.',
+    derin: 'Deep: Investigates sub-components, examples, and detailed inner workings.',
+    kapsamli: 'Comprehensive: Explores edge cases, limits, history, and exhaustive details.'
+  },
+  formatDescs: {
+    markdown: 'Markdown: Organized hierarchy using headers, lists, and code blocks.',
+    tablo: 'Table Heavy: Arranges comparisons and datasets in structured tables.',
+    ders: 'Lecture Notes: Formats in academic curriculum style step-by-step.',
+    quiz: 'With Quizzes: Adds interactive exercises and tests to consolidate learning.'
+  },
  presetsTitle: 'Quick Presets',
  paramsTitle: 'Parameters',
  presets: {
@@ -172,6 +235,13 @@ export const i18n = {
  yaratici: 'Creative Synth'
  },
  modulesTitle: 'Learning Modules',
+ categories: {
+    foundation: 'Foundations & Intro',
+    mechanism: 'Mechanics & Sim',
+    context: 'Connections',
+    boundaries: 'Limits & Risks',
+    application: 'Practice & Growth'
+  },
  selectAll: 'Select All',
  clearAll: 'Clear All',
  reqsLabel: 'Requires',

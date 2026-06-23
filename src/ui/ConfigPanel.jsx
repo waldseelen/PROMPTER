@@ -17,8 +17,20 @@ export default function ConfigPanel() {
                 <div className="card-title"><span className="dot"></span> {t.paramsTitle || 'Parametreler'}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div className="input-group">
-                        <label htmlFor="sel-seviye" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                        <label htmlFor="sel-seviye" style={{display: 'flex', alignItems: 'center', gap: '6px', position: 'relative'}}>
                             <GraduationCap size={14} /> {t.levelLabel}
+                            <div className="config-tooltip tooltip-down">
+                                <ul className="tooltip-list">
+                                    {Object.entries(t.levelDescs || {}).map(([key, text]) => {
+                                        const [title, ...rest] = text.split(':');
+                                        return (
+                                            <li key={key}>
+                                                <strong>{title}:</strong>{rest.join(':')}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
                         </label>
                         <select id="sel-seviye" value={config.seviye} onChange={(e) => setConfig('seviye', e.target.value)}>
                             <option value="otomatik">{t.levels.otomatik}</option>
@@ -29,8 +41,20 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-mod" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                        <label htmlFor="sel-mod" style={{display: 'flex', alignItems: 'center', gap: '6px', position: 'relative'}}>
                             <Workflow size={14} /> {t.modeLabel}
+                            <div className="config-tooltip tooltip-down">
+                                <ul className="tooltip-list">
+                                    {Object.entries(t.modeDescs || {}).map(([key, text]) => {
+                                        const [title, ...rest] = text.split(':');
+                                        return (
+                                            <li key={key}>
+                                                <strong>{title}:</strong>{rest.join(':')}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
                         </label>
                         <select id="sel-mod" value={config.mod} onChange={(e) => setConfig('mod', e.target.value)}>
                             <option value="karma">{t.modes.karma}</option>
@@ -41,8 +65,20 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-derinlik" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                        <label htmlFor="sel-derinlik" style={{display: 'flex', alignItems: 'center', gap: '6px', position: 'relative'}}>
                             <Layers size={14} /> {t.depthLabel}
+                            <div className="config-tooltip">
+                                <ul className="tooltip-list">
+                                    {Object.entries(t.depthDescs || {}).map(([key, text]) => {
+                                        const [title, ...rest] = text.split(':');
+                                        return (
+                                            <li key={key}>
+                                                <strong>{title}:</strong>{rest.join(':')}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
                         </label>
                         <select id="sel-derinlik" value={config.derinlik} onChange={(e) => setConfig('derinlik', e.target.value)}>
                             <option value="orta">{t.depths.orta}</option>
@@ -52,8 +88,20 @@ export default function ConfigPanel() {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="sel-format" style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+                        <label htmlFor="sel-format" style={{display: 'flex', alignItems: 'center', gap: '6px', position: 'relative'}}>
                             <FileText size={14} /> {t.formatLabel}
+                            <div className="config-tooltip">
+                                <ul className="tooltip-list">
+                                    {Object.entries(t.formatDescs || {}).map(([key, text]) => {
+                                        const [title, ...rest] = text.split(':');
+                                        return (
+                                            <li key={key}>
+                                                <strong>{title}:</strong>{rest.join(':')}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
                         </label>
                         <select id="sel-format" value={config.format} onChange={(e) => setConfig('format', e.target.value)}>
                             <option value="markdown">{t.formats.markdown}</option>
@@ -65,23 +113,33 @@ export default function ConfigPanel() {
                 </div>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
-                    <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
-                        <label className="toggle-switch">
-                            <input type="checkbox" id="chk-monolog" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
-                            <span className="slider"></span>
-                        </label>
-                        <label htmlFor="chk-monolog" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <BrainCircuit size={14} /> {t.monologLabel}
-                        </label>
+                    <div className="toggle-row">
+                        <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                            <label className="toggle-switch">
+                                <input type="checkbox" id="chk-monolog" checked={config.monolog} onChange={(e) => setConfig('monolog', e.target.checked)} />
+                                <span className="slider"></span>
+                            </label>
+                            <label htmlFor="chk-monolog" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <BrainCircuit size={14} /> {t.monologLabel}
+                            </label>
+                        </div>
+                        <div className="config-tooltip">
+                            {t.monologDesc}
+                        </div>
                     </div>
-                    <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
-                        <label className="toggle-switch">
-                            <input type="checkbox" id="chk-autoresolve" checked={config.autoResolveDeps} onChange={(e) => setConfig('autoResolveDeps', e.target.checked)} />
-                            <span className="slider"></span>
-                        </label>
-                        <label htmlFor="chk-autoresolve" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Link size={14} /> {t.autoResolveLabel}
-                        </label>
+                    <div className="toggle-row">
+                        <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                            <label className="toggle-switch">
+                                <input type="checkbox" id="chk-autoresolve" checked={config.autoResolveDeps} onChange={(e) => setConfig('autoResolveDeps', e.target.checked)} />
+                                <span className="slider"></span>
+                            </label>
+                            <label htmlFor="chk-autoresolve" style={{ margin: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <Link size={14} /> {t.autoResolveLabel}
+                            </label>
+                        </div>
+                        <div className="config-tooltip">
+                            {t.autoResolveDesc}
+                        </div>
                     </div>
                 </div>
             </section>
