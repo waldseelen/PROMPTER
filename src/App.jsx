@@ -63,6 +63,8 @@ export default function App() {
 
     return (
         <div className="app">
+            <div className="bg-glow-orb orb-1"></div>
+            <div className="bg-glow-orb orb-2"></div>
             <Header />
             <ErrorBoundary>
                 <main className="container">

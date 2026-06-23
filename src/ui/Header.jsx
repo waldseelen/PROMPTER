@@ -34,29 +34,23 @@ export default function Header() {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
                 <button 
                     onClick={startTour}
-                    className="header-tour-btn"
-                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', width: '28px', height: '28px' }}
+                    className="header-icon-btn"
                     title={t.tour?.btnReplay || 'Quick Tour'}
-                    onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                 >
                     <HelpCircle size={18} strokeWidth={1.5} />
                 </button>
                 <button 
                     onClick={toggleLang}
-                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', fontSize: '0.75rem', padding: '2px 8px', color: 'var(--text-secondary)', fontWeight: 600, transition: 'all 0.2s', height: '28px', display: 'flex', alignItems: 'center' }}
+                    className="header-icon-btn"
+                    style={{ fontSize: '0.75rem', fontWeight: 700 }}
                     title={config.lang === 'en' ? 'Türkçe' : 'English'}
-                    onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                 >
                     {config.lang === 'en' ? 'TR' : 'EN'}
                 </button>
                 <button 
                     onClick={toggleTheme}
-                    style={{ background: 'transparent', border: '1px solid var(--border)', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s', width: '28px', height: '28px' }}
+                    className="header-icon-btn"
                     title={`Theme: ${config.theme}`}
-                    onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
                 >
                     <ThemeIcon />
                 </button>

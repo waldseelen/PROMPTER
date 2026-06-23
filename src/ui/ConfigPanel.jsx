@@ -11,11 +11,11 @@ export default function ConfigPanel() {
     const t = getTranslation(config.lang);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-
-            <section className="card" style={{ marginBottom: 0 }}>
-                <div className="card-title"><span className="dot"></span> {t.paramsTitle || 'Parametreler'}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <section className="card" style={{ marginBottom: 0, height: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div className="card-title" style={{ marginBottom: 0 }}><span className="dot"></span> {t.paramsTitle || 'Parametreler'}</div>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
                     <div className="input-group">
                         <label htmlFor="sel-seviye" style={{display: 'flex', alignItems: 'center', gap: '6px', position: 'relative'}}>
                             <GraduationCap size={14} /> {t.levelLabel}
@@ -112,7 +112,7 @@ export default function ConfigPanel() {
                     </div>
                 </div>
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
                     <div className="toggle-row">
                         <div className="input-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
                             <label className="toggle-switch">

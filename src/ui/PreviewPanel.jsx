@@ -53,8 +53,18 @@ export default function PreviewPanel() {
                     {generatedPrompt}
                 </div>
             ) : (
-                <div className="preview-empty">
-                    {t.previewEmpty}
+                <div className="preview-empty" style={{ gap: '16px', padding: '2rem 1rem' }}>
+                    <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--accent-1)' }}>
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" style={{ opacity: 0.3 }} />
+                            <polyline points="14 2 14 8 20 8" style={{ opacity: 0.3 }} />
+                            <line x1="8" y1="13" x2="16" y2="13" className="pulse-line-1" />
+                            <line x1="8" y1="17" x2="14" y2="17" className="pulse-line-2" />
+                        </svg>
+                    </div>
+                    <p style={{ fontSize: '0.8rem', fontStyle: 'italic', maxWidth: '240px', lineHeight: 1.4, margin: 0 }}>
+                        {t.previewEmpty}
+                    </p>
                 </div>
             )}
         </section>
